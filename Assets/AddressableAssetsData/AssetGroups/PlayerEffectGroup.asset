@@ -1,0 +1,83 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: PlayerEffectGroup
+  m_EditorClassIdentifier: 
+  m_GroupName: PlayerEffectGroup
+  m_GUID: 522d4b3c0ee4be94083be5e27bdd462a
+  m_SerializeEntries:
+  - m_GUID: 0643df5f614351b42a434980326c13f2
+    m_Address: S0-1
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - PlayerEffect
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 16e61da194bbe8e4c9d164dbde838301
+    m_Address: S10-1
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - PlayerEffect
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2b4be41cc1154864c80c576f356b237b
+    m_Address: S23-1
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - PlayerEffect
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2ff1fc6c2699a894e9071cc24a240c15
+    m_Address: S100002-1
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - PlayerEffect
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 43d63063a89ed3a4ea9452353bf07bd1
+    m_Address: S21-1
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - PlayerEffect
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 596ca2ab3981ad240a1a11a91b4f479f
+    m_Address: S210003-1
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - PlayerEffect
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7819595d2d509c14f92d25c7722cabd2
+    m_Address: S24-1
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - PlayerEffect
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7dce74ae0f904e24b9397d219f052f75
+    m_Address: S100001-1
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - PlayerEffect
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e0ed298732a4ea54aa145f9d3f331a89
+    m_Address: S210003-2
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - PlayerEffect
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: fc52a965af0e81a40ae2e9eb83b5123d
+    m_Address: S22-1
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - PlayerEffect
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 5cf4464ca5b325f4bb8b3da7669b3ecd, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: fab781705744ff84eb452233a0532316, type: 2}
+    - {fileID: 11400000, guid: 90f7ec9e85c89a241adf721ec03ba220, type: 2}

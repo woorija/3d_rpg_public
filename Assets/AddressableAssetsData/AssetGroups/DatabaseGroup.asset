@@ -1,0 +1,101 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: DatabaseGroup
+  m_EditorClassIdentifier: 
+  m_GroupName: DatabaseGroup
+  m_GUID: 759372535b4a5f74e9b828ba0aa57c94
+  m_SerializeEntries:
+  - m_GUID: 08c01cb2ae8e7e242bc3b8a737b8a515
+    m_Address: SkillInformationDB
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - DataBase
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 142f1a041082118448d22788980faf22
+    m_Address: QuestDB
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - DataBase
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2da874b0eaca8b249836927c95eba006
+    m_Address: CraftDB
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - DataBase
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2ee05070b5b57d344be1834ffb5b7ec1
+    m_Address: QuestSpecialRewardDB
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - DataBase
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 37cb143c9cf6f784db3bffe8536e8d7b
+    m_Address: UseableItemDB
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - DataBase
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3c4f2f245f11d1e418417346308d9ed2
+    m_Address: EquipmentItemDB
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - DataBase
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3cbd96a4697b87f41a6cee0bbc8c6269
+    m_Address: QuestRewardDB
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - DataBase
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6a2f66f3e2f244c44bd9c0370aa1b7bf
+    m_Address: ItemBuffDB
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - DataBase
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 84332247c1df7d742aa9bc9351b200be
+    m_Address: ExpDB
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - DataBase
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: bd79d51b4f2a10d4d8998c6fcce4712e
+    m_Address: MiscItemDB
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - DataBase
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: cc4182e392e22b84eb3484321fa7ae26
+    m_Address: MonsterNameDB
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - DataBase
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: cdd54e0a6bde24242be2890bade7bc19
+    m_Address: SkillBuffDB
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - DataBase
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: fee1f1db6c82cc84993523cf4b30a82b
+    m_Address: SkillDB
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - DataBase
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 5cf4464ca5b325f4bb8b3da7669b3ecd, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: ac2d304af23319c4398711f48544f2f0, type: 2}
+    - {fileID: 11400000, guid: b2ee4935af0424e45a542a360204c68f, type: 2}

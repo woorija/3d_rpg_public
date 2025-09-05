@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35305b58d8d5aaf42bc84aa5859bc242, type: 3}
+  m_Name: MushroomBlackBoardData
+  m_EditorClassIdentifier: 
+  id: 10001
+  level: 2
+  maxHp: 50
+  trackingRange: 6
+  normalAttackRange: 1.5
+  limitTrackingRange: 144
+  limitTrackingHeight: 3
+  minIdleTime: 2
+  maxIdleTime: 5
+  idleMoveSpeed: 1.2
+  trackingMoveSpeed: 2
+  returnMoveSpeed: 7
+  attackCooltime: 4
+  attackRange: 1.5
+  attackDamage: 10
+  respawnTime: 10
+  dashskillCooltime: 10
+  dashskillRange: {x: 0.8, y: 1, z: 1.5}
+  dashskillDamage: 25
+  jumpSkillCooltime: 15
+  jumpSkillInnerRange: 2.25
+  jumpSkillOuterRange: 9
+  jumpSkillInnerDamage: 40
+  jumpSkillOuterDamage: 15

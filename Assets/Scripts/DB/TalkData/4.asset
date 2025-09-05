@@ -1,0 +1,107 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c12c45bc5d9f52469ba38650ca41d2d, type: 3}
+  m_Name: 4
+  m_EditorClassIdentifier: 
+  talkDatas:
+  - questId: 0
+    questProgress: 0
+    talkIndex: 0
+    talkNpcId: 4
+    talk: "\uC804\uC9C1\uC744 \uD558\uB7EC \uC654\uB2E4\uBA74 \uB808\uBCA8 10\uC744
+      \uB2EC\uC131\uD558\uACE0 \uC800\uC5D0\uAC8C \uB2E4\uC2DC \uC640\uC8FC\uC138\uC694"
+  - questId: 0
+    questProgress: 0
+    talkIndex: 1
+    talkNpcId: 4
+    talk: "\uD018\uC2A4\uD2B8\uB97C \uC2DC\uC791\uD558\uBA74 \uB2E4\uB978 \uC9C1\uC5C5\uC744
+      \uC120\uD0DD\uD560 \uC218 \uC5C6\uC73C\uB2C8 \uC8FC\uC758\uD558\uC5EC \uC120\uD0DD\uD574\uC8FC\uC138\uC694."
+  - questId: 401
+    questProgress: 0
+    talkIndex: 0
+    talkNpcId: 4
+    talk: "\uC804\uC9C1\uC744 \uD560 \uC218 \uC788\uB294 \uACBD\uC9C0\uC5D0 \uC624\uB974\uC168\uAD70\uC694.
+      \uC798 \uCC3E\uC544\uC624\uC168\uC5B4\uC694."
+  - questId: 401
+    questProgress: 0
+    talkIndex: 1
+    talkNpcId: 4
+    talk: "\uC9C1\uC5C51\uB85C \uC804\uC9C1\uD558\uACE0 \uC2F6\uC73C\uC2DC\uAD70\uC694."
+  - questId: 401
+    questProgress: 0
+    talkIndex: 2
+    talkNpcId: 4
+    talk: "\uC81C \uB4A4\uC5D0 \uC788\uB294 NPC5\uB97C \uCC3E\uC544\uAC00\uC138\uC694."
+  - questId: 402
+    questProgress: 0
+    talkIndex: 0
+    talkNpcId: 4
+    talk: "\uC804\uC9C1\uC744 \uD560 \uC218 \uC788\uB294 \uACBD\uC9C0\uC5D0 \uC624\uB974\uC168\uAD70\uC694.
+      \uC798 \uCC3E\uC544\uC624\uC168\uC5B4\uC694."
+  - questId: 402
+    questProgress: 0
+    talkIndex: 1
+    talkNpcId: 4
+    talk: "\uC9C1\uC5C52\uB85C \uC804\uC9C1\uD558\uACE0 \uC2F6\uC73C\uC2DC\uAD70\uC694."
+  - questId: 402
+    questProgress: 0
+    talkIndex: 2
+    talkNpcId: 4
+    talk: "\uC81C \uB4A4\uC5D0 \uC788\uB294 NPC6\uB97C \uCC3E\uC544\uAC00\uC138\uC694."
+  - questId: 403
+    questProgress: 0
+    talkIndex: 0
+    talkNpcId: 4
+    talk: "\uC804\uC9C1\uC744 \uD560 \uC218 \uC788\uB294 \uACBD\uC9C0\uC5D0 \uC624\uB974\uC168\uAD70\uC694.
+      \uC798 \uCC3E\uC544\uC624\uC168\uC5B4\uC694."
+  - questId: 403
+    questProgress: 0
+    talkIndex: 1
+    talkNpcId: 4
+    talk: "\uC9C1\uC5C53\uB85C \uC804\uC9C1\uD558\uACE0 \uC2F6\uC73C\uC2DC\uAD70\uC694."
+  - questId: 403
+    questProgress: 0
+    talkIndex: 2
+    talkNpcId: 4
+    talk: "\uC81C \uB4A4\uC5D0 \uC788\uB294 NPC7\uB97C \uCC3E\uC544\uAC00\uC138\uC694."
+  - questId: 404
+    questProgress: 0
+    talkIndex: 0
+    talkNpcId: 4
+    talk: "\uC804\uC9C1\uC744 \uD560 \uC218 \uC788\uB294 \uACBD\uC9C0\uC5D0 \uC624\uB974\uC168\uAD70\uC694.
+      \uC798 \uCC3E\uC544\uC624\uC168\uC5B4\uC694."
+  - questId: 404
+    questProgress: 0
+    talkIndex: 1
+    talkNpcId: 4
+    talk: "\uC9C1\uC5C54\uB85C \uC804\uC9C1\uD558\uACE0 \uC2F6\uC73C\uC2DC\uAD70\uC694."
+  - questId: 404
+    questProgress: 0
+    talkIndex: 2
+    talkNpcId: 4
+    talk: "\uC81C \uB4A4\uC5D0 \uC788\uB294 NPC8\uB97C \uCC3E\uC544\uAC00\uC138\uC694."
+  - questId: 405
+    questProgress: 0
+    talkIndex: 0
+    talkNpcId: 4
+    talk: "\uC804\uC9C1\uC744 \uD560 \uC218 \uC788\uB294 \uACBD\uC9C0\uC5D0 \uC624\uB974\uC168\uAD70\uC694.
+      \uC798 \uCC3E\uC544\uC624\uC168\uC5B4\uC694."
+  - questId: 405
+    questProgress: 0
+    talkIndex: 1
+    talkNpcId: 4
+    talk: "\uC9C1\uC5C55\uB85C \uC804\uC9C1\uD558\uACE0 \uC2F6\uC73C\uC2DC\uAD70\uC694."
+  - questId: 405
+    questProgress: 0
+    talkIndex: 2
+    talkNpcId: 4
+    talk: "\uC81C \uB4A4\uC5D0 \uC788\uB294 NPC9\uB97C \uCC3E\uC544\uAC00\uC138\uC694."

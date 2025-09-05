@@ -1,0 +1,84 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c12c45bc5d9f52469ba38650ca41d2d, type: 3}
+  m_Name: 3
+  m_EditorClassIdentifier: 
+  talkDatas:
+  - questId: 0
+    questProgress: 0
+    talkIndex: 0
+    talkNpcId: 3
+    talk: "\uB300\uC0AC12222"
+  - questId: 0
+    questProgress: 0
+    talkIndex: 1
+    talkNpcId: 3
+    talk: "\uB300\uC0AC22222"
+  - questId: 0
+    questProgress: 0
+    talkIndex: 2
+    talkNpcId: 3
+    talk: "\uB300\uC0AC32222"
+  - questId: 301
+    questProgress: 0
+    talkIndex: 0
+    talkNpcId: 3
+    talk: "\uC5B4\uC11C\uC624\uAC8C."
+  - questId: 301
+    questProgress: 0
+    talkIndex: 1
+    talkNpcId: 3
+    talk: "\uB0B4\uAC00 \uB3CC\uC744 \uBAA8\uC73C\uACE0 \uC788\uB294\uB370 \uAD6C\uD574\uB2E4
+      \uC904 \uC218 \uC788\uACA0\uB294\uAC00?"
+  - questId: 301
+    questProgress: 0
+    talkIndex: 2
+    talkNpcId: 3
+    talk: "\uC774 \uB3CC\uB4E4\uC744 \uAD6C\uD574\uC624\uBA74 \uBCF4\uC0C1\uC744
+      \uC8FC\uB3C4\uB85D \uD558\uC9C0"
+  - questId: 301
+    questProgress: 1
+    talkIndex: 0
+    talkNpcId: 3
+    talk: "\uC624! \uC804\uBD80 \uAD6C\uD574\uC654\uAD70"
+  - questId: 301
+    questProgress: 1
+    talkIndex: 1
+    talkNpcId: 3
+    talk: "\uC5EC\uAE30 \uBCF4\uC0C1\uC77C\uC138"
+  - questId: 302
+    questProgress: 0
+    talkIndex: 0
+    talkNpcId: 3
+    talk: "\uC5B4\uC11C\uC624\uAC8C."
+  - questId: 302
+    questProgress: 0
+    talkIndex: 1
+    talkNpcId: 3
+    talk: "\uB0B4\uAC00 \uB3CC\uC744 \uBAA8\uC73C\uACE0 \uC788\uB294\uB370 \uAD6C\uD574\uB2E4
+      \uC904 \uC218 \uC788\uACA0\uB294\uAC00?"
+  - questId: 302
+    questProgress: 0
+    talkIndex: 2
+    talkNpcId: 3
+    talk: "\uC774 \uB3CC\uB4E4\uC744 \uAD6C\uD574\uC624\uBA74 \uBCF4\uC0C1\uC744
+      \uC8FC\uB3C4\uB85D \uD558\uC9C0"
+  - questId: 302
+    questProgress: 1
+    talkIndex: 0
+    talkNpcId: 3
+    talk: "\uC624! \uC804\uBD80 \uAD6C\uD574\uC654\uAD70"
+  - questId: 302
+    questProgress: 1
+    talkIndex: 1
+    talkNpcId: 3
+    talk: "\uC5EC\uAE30 \uBCF4\uC0C1\uC77C\uC138"

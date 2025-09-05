@@ -1,0 +1,65 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: StatusTableGroup
+  m_EditorClassIdentifier: 
+  m_GroupName: StatusTableGroup
+  m_GUID: 71d6effa53225794282340c9b7b357a5
+  m_SerializeEntries:
+  - m_GUID: 12be9d7897f99be42b3930932fad8aca
+    m_Address: 02_02
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CurrectionTable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 72906c93aa971a44184e7b08dba70e0a
+    m_Address: 03_01
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CurrectionTable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9d2e18ae9ee88314eb53a3501c3b9213
+    m_Address: 01_00
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CurrectionTable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a591dcd610d9d8049b8ba5e55f291ab7
+    m_Address: 02_04
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CurrectionTable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a664820512946884eb5fc7ca79df0aeb
+    m_Address: 02_05
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CurrectionTable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c4382d210ca9b2548931fdcdc7ca08ab
+    m_Address: 02_01
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CurrectionTable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e32fec53ccd295444943bc878c17d724
+    m_Address: 02_03
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CurrectionTable
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 5cf4464ca5b325f4bb8b3da7669b3ecd, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 735f4fdac4bb5ea4093e31d23186cc4a, type: 2}
+    - {fileID: 11400000, guid: def65c3af54755448922c44de9f6561d, type: 2}

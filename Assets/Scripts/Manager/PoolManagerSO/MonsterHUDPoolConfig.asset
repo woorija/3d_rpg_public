@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 013fe0dfce6f5f34b99efbba1e2e6aa4, type: 3}
+  m_Name: MonsterHUDPoolConfig
+  m_EditorClassIdentifier: Assembly-CSharp::PoolConfigSO
+  poolName: monsterHUD
+  poolDataType: MonsterHUD
+  poolCapacity: 16
+  isClassPool: 0
+  hasParent: 1
+  parentObjectName: MonsterHUDCanvas
+  prefab: {fileID: 3469782836187905974, guid: 3a75c34a4fc72c6498744237fff637d9, type: 3}
