@@ -1,7 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 public class BT_CheckAttackRange : BT_CheckDistance
 {
     protected override void Awake()

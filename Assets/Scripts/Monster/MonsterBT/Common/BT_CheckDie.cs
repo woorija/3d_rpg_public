@@ -1,12 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 public class BT_CheckDie : BT_ActionNode
 {
+    protected BaseBlackBoard blackBoard;
+    protected override void Awake()
+    {
+        base.Awake();
+        blackBoard = BT.GetBlackBoard();
+    }
     public override BTResult Execute()
     {
-        BaseBlackBoard blackBoard = BT.GetBlackBoard();
         if (blackBoard.isDie)
         {
             BT.PlayAnimation();

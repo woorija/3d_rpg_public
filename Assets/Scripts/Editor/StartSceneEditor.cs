@@ -1,15 +1,31 @@
 using UnityEditor;
 using UnityEditor.SceneManagement;
-using UnityEngine;
 
 [InitializeOnLoad]
-public class StartSceneEditor : MonoBehaviour
+public static class StartSceneEditor
 {
+    private const string previousScenePath = "PreviousScene";
+
     static StartSceneEditor()
     {
-        var pathOfFirstScene = EditorBuildSettings.scenes[0].path;
-        var sceneAsset = AssetDatabase.LoadAssetAtPath<SceneAsset>(pathOfFirstScene);
+        EditorApplication.playModeStateChanged += OnPlayModeStateChanged;
+    }
 
-        EditorSceneManager.playModeStartScene = sceneAsset;
+    private static void OnPlayModeStateChanged(PlayModeStateChange state)
+    {
+        if (state == PlayModeStateChange.ExitingEditMode)
+        {
+            string currentScene = EditorSceneManager.GetActiveScene().path;
+            EditorPrefs.SetString(previousScenePath, currentScene);
+            EditorSceneManager.OpenScene(EditorBuildSettings.scenes[0].path);
+        }
+        else if (state == PlayModeStateChange.EnteredEditMode)
+        {
+            string prevuoisScene = EditorPrefs.GetString(previousScenePath, "");
+            if (!string.IsNullOrEmpty(prevuoisScene))
+            {
+                EditorSceneManager.OpenScene(prevuoisScene);
+            }
+        }
     }
 }

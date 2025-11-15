@@ -26,7 +26,7 @@ public class UIManager : SingletonBehaviour<UIManager>, IInputBindable
     }
     private void Start()
     {
-        settingUI.Close();
+        settingUI.StartClose();
         InputInit();
     }
     private void InputInit()

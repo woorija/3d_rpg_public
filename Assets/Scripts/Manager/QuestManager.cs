@@ -3,28 +3,30 @@ using UnityEngine;
 
 public class QuestManager : SingletonBehaviour<QuestManager>
 {
+    const int questCount = 128;
     #region 퀘스트리스트
-    List<QuestData> notStartQuests = new List<QuestData>(128);
-    public List<QuestData> startableQuests { get; private set; } = new List<QuestData>(64);
-    public List<QuestData> inProgressQuests { get; private set; } = new List<QuestData>(64);
-    public List<QuestData> completableQuests { get; private set; } = new List<QuestData>(64);
-    public List<QuestData> completeQuests { get; private set; } = new List<QuestData>(64);
-    public HashSet<int> blockedQuestIds { get; private set; } = new HashSet<int>(64);
-    public HashSet<int> unavailableQuestIds { get; private set; } = new HashSet<int>(64); //진행,완료가능,완료 퀘스트 모음
+    List<QuestData> notStartQuests = new List<QuestData>(questCount);
+    public List<QuestData> startableQuests { get; private set; } = new List<QuestData>(questCount);
+    public List<QuestData> inProgressQuests { get; private set; } = new List<QuestData>(questCount);
+    public List<QuestData> completableQuests { get; private set; } = new List<QuestData>(questCount);
+    public List<QuestData> completeQuests { get; private set; } = new List<QuestData>(questCount);
+    public HashSet<int> blockedQuestIds { get; private set; } = new HashSet<int>(questCount);
+    public HashSet<int> unavailableQuestIds { get; private set; } = new HashSet<int>(questCount); //진행,완료가능,완료 퀘스트 모음
     public Dictionary<int, Dictionary<int, bool>> talkDatas { get; private set; } = new Dictionary<int, Dictionary<int, bool>>();
     public Dictionary<int, Dictionary<int,int>> huntDatas { get; private set; }  = new Dictionary<int, Dictionary<int, int>>();
     // 1번 딕셔너리 키 = 퀘스트id
     // 2번 딕셔너리 키 = 몬스터id
     // 2번 딕셔너리 값 = 몬스터 사냥수
     Dictionary<int, List<int>> monsterToQuestMap = new Dictionary<int, List<int>>(64);
-    public List<QuestData> activeQuests { get; private set; } = new List<QuestData>(128); //진행,완료가능퀘스트 모음
+    public List<QuestData> activeQuests { get; private set; } = new List<QuestData>(questCount); //진행,완료가능퀘스트 모음
     #endregion
 
     #region NPC 퀘스트 리스트
     //아래 3개 리스트는 npc와 대화 시 적용시킬 퀘스트 id 리스트
-    public List<int> currentCompletableQuestIds { get; private set; } = new List<int>(32);
-    public List<int> currentInprogressableQuestIds { get; private set; } = new List<int>(32);
-    public List<int> currentStartableQuestIds { get; private set; } = new List<int>(32);
+    const int currentQuestCount = 32;
+    public List<int> currentCompletableQuestIds { get; private set; } = new List<int>(currentQuestCount);
+    public List<int> currentInprogressableQuestIds { get; private set; } = new List<int>(currentQuestCount);
+    public List<int> currentStartableQuestIds { get; private set; } = new List<int>(currentQuestCount);
     #endregion
     List<int> emptyMonsterIds  = new List<int>(16);
     [SerializeField] PlayerStatus playerStatus;

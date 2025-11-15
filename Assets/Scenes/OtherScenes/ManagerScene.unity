@@ -25722,6 +25722,7 @@ GameObject:
   - component: {fileID: 756577711}
   - component: {fileID: 756577710}
   - component: {fileID: 756577709}
+  - component: {fileID: 756577712}
   m_Layer: 5
   m_Name: SellButton
   m_TagString: Untagged
@@ -25799,6 +25800,62 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 756577707}
   m_CullTransparentMesh: 1
+--- !u!114 &756577712
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 756577707}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 0
+  m_TargetGraphic: {fileID: 756577710}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 756577709}
+        m_TargetAssemblyTypeName: ItemSellButton, Assembly-CSharp
+        m_MethodName: SellUIOpen
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1001 &761812605
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -33930,7 +33987,7 @@ MonoBehaviour:
   TargetOffset: {x: 0, y: 0, z: 0}
   TrackerSettings:
     BindingMode: 0
-    PositionDamping: {x: 1, y: 1, z: 1}
+    PositionDamping: {x: 0.15, y: 0.15, z: 0.15}
     AngularDampingMode: 0
     RotationDamping: {x: 0, y: 0, z: 0}
     QuaternionDamping: 0
@@ -61111,6 +61168,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameMode: 0
   cineCam: {fileID: 979348684}
+  mainCamSkybox: {fileID: 330585549}
 --- !u!4 &1743314908
 Transform:
   m_ObjectHideFlags: 0
@@ -72276,11 +72334,6 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1110529687737397238, guid: 0e1013a2e3ac1b0409c35b5f11329b9f,
-        type: 3}
-      propertyPath: hitUtility
-      value: 
-      objectReference: {fileID: 1743314910}
     - target: {fileID: 1128701647495449016, guid: 0e1013a2e3ac1b0409c35b5f11329b9f,
         type: 3}
       propertyPath: onUseQuickSlots.Array.size
@@ -72301,6 +72354,81 @@ PrefabInstance:
       propertyPath: onUseQuickSlots.Array.data[0].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 1618024508937824337, guid: 0e1013a2e3ac1b0409c35b5f11329b9f,
+        type: 3}
+      propertyPath: hitUtility
+      value: 
+      objectReference: {fileID: 1743314910}
+    - target: {fileID: 1702187125284304364, guid: 0e1013a2e3ac1b0409c35b5f11329b9f,
+        type: 3}
+      propertyPath: <priority>k__BackingField
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1702187125284304364, guid: 0e1013a2e3ac1b0409c35b5f11329b9f,
+        type: 3}
+      propertyPath: <animationClipHash>k__BackingField
+      value: 765711723
+      objectReference: {fileID: 0}
+    - target: {fileID: 1702187125284304364, guid: 0e1013a2e3ac1b0409c35b5f11329b9f,
+        type: 3}
+      propertyPath: <animationStateHash>k__BackingField
+      value: 765711723
+      objectReference: {fileID: 0}
+    - target: {fileID: 2548715388230512953, guid: 0e1013a2e3ac1b0409c35b5f11329b9f,
+        type: 3}
+      propertyPath: <animationClipHash>k__BackingField
+      value: 1080829965
+      objectReference: {fileID: 0}
+    - target: {fileID: 2548715388230512953, guid: 0e1013a2e3ac1b0409c35b5f11329b9f,
+        type: 3}
+      propertyPath: <animationStateHash>k__BackingField
+      value: -1610822797
+      objectReference: {fileID: 0}
+    - target: {fileID: 2722634747880068266, guid: 0e1013a2e3ac1b0409c35b5f11329b9f,
+        type: 3}
+      propertyPath: <priority>k__BackingField
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 2722634747880068266, guid: 0e1013a2e3ac1b0409c35b5f11329b9f,
+        type: 3}
+      propertyPath: <animationClipHash>k__BackingField
+      value: 1654612129
+      objectReference: {fileID: 0}
+    - target: {fileID: 2722634747880068266, guid: 0e1013a2e3ac1b0409c35b5f11329b9f,
+        type: 3}
+      propertyPath: <animationStateHash>k__BackingField
+      value: 1654612129
+      objectReference: {fileID: 0}
+    - target: {fileID: 2780450745052360820, guid: 0e1013a2e3ac1b0409c35b5f11329b9f,
+        type: 3}
+      propertyPath: <priority>k__BackingField
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 2780450745052360820, guid: 0e1013a2e3ac1b0409c35b5f11329b9f,
+        type: 3}
+      propertyPath: <animationClipHash>k__BackingField
+      value: 1533177906
+      objectReference: {fileID: 0}
+    - target: {fileID: 2780450745052360820, guid: 0e1013a2e3ac1b0409c35b5f11329b9f,
+        type: 3}
+      propertyPath: <animationStateHash>k__BackingField
+      value: 1533177906
+      objectReference: {fileID: 0}
+    - target: {fileID: 2892639542199153838, guid: 0e1013a2e3ac1b0409c35b5f11329b9f,
+        type: 3}
+      propertyPath: <priority>k__BackingField
+      value: 80
+      objectReference: {fileID: 0}
+    - target: {fileID: 2892639542199153838, guid: 0e1013a2e3ac1b0409c35b5f11329b9f,
+        type: 3}
+      propertyPath: <animationClipHash>k__BackingField
+      value: -1903714832
+      objectReference: {fileID: 0}
+    - target: {fileID: 2892639542199153838, guid: 0e1013a2e3ac1b0409c35b5f11329b9f,
+        type: 3}
+      propertyPath: <animationStateHash>k__BackingField
+      value: -1903714832
+      objectReference: {fileID: 0}
     - target: {fileID: 3068627170228596080, guid: 0e1013a2e3ac1b0409c35b5f11329b9f,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -72310,6 +72438,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3081557393360642774, guid: 0e1013a2e3ac1b0409c35b5f11329b9f,
+        type: 3}
+      propertyPath: <priority>k__BackingField
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 3081557393360642774, guid: 0e1013a2e3ac1b0409c35b5f11329b9f,
+        type: 3}
+      propertyPath: <animationClipHash>k__BackingField
+      value: 20298039
+      objectReference: {fileID: 0}
+    - target: {fileID: 3081557393360642774, guid: 0e1013a2e3ac1b0409c35b5f11329b9f,
+        type: 3}
+      propertyPath: <animationStateHash>k__BackingField
+      value: 20298039
       objectReference: {fileID: 0}
     - target: {fileID: 3345112346482912393, guid: 0e1013a2e3ac1b0409c35b5f11329b9f,
         type: 3}
@@ -72506,6 +72649,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4422711397758889063, guid: 0e1013a2e3ac1b0409c35b5f11329b9f,
+        type: 3}
+      propertyPath: <priority>k__BackingField
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 4422711397758889063, guid: 0e1013a2e3ac1b0409c35b5f11329b9f,
+        type: 3}
+      propertyPath: <animationClipHash>k__BackingField
+      value: 1080829965
+      objectReference: {fileID: 0}
+    - target: {fileID: 4422711397758889063, guid: 0e1013a2e3ac1b0409c35b5f11329b9f,
+        type: 3}
+      propertyPath: <animationStateHash>k__BackingField
+      value: 1552726229
+      objectReference: {fileID: 0}
     - target: {fileID: 4452774174204180695, guid: 0e1013a2e3ac1b0409c35b5f11329b9f,
         type: 3}
       propertyPath: deleteMiliseconds
@@ -72515,6 +72673,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4628679094192520147, guid: 0e1013a2e3ac1b0409c35b5f11329b9f,
+        type: 3}
+      propertyPath: <priority>k__BackingField
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4628679094192520147, guid: 0e1013a2e3ac1b0409c35b5f11329b9f,
+        type: 3}
+      propertyPath: <animationStateHash>k__BackingField
+      value: 1748754976
       objectReference: {fileID: 0}
     - target: {fileID: 5338104480420788550, guid: 0e1013a2e3ac1b0409c35b5f11329b9f,
         type: 3}
@@ -72696,15 +72864,65 @@ PrefabInstance:
       propertyPath: maxStaminaChangeEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 5475604575169246961, guid: 0e1013a2e3ac1b0409c35b5f11329b9f,
+        type: 3}
+      propertyPath: <priority>k__BackingField
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 5475604575169246961, guid: 0e1013a2e3ac1b0409c35b5f11329b9f,
+        type: 3}
+      propertyPath: <animationClipHash>k__BackingField
+      value: 1080829965
+      objectReference: {fileID: 0}
+    - target: {fileID: 5475604575169246961, guid: 0e1013a2e3ac1b0409c35b5f11329b9f,
+        type: 3}
+      propertyPath: <animationStateHash>k__BackingField
+      value: 1080829965
+      objectReference: {fileID: 0}
+    - target: {fileID: 5618642439755324282, guid: 0e1013a2e3ac1b0409c35b5f11329b9f,
+        type: 3}
+      propertyPath: <priority>k__BackingField
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5618642439755324282, guid: 0e1013a2e3ac1b0409c35b5f11329b9f,
+        type: 3}
+      propertyPath: <animationClipHash>k__BackingField
+      value: 125937960
+      objectReference: {fileID: 0}
+    - target: {fileID: 5618642439755324282, guid: 0e1013a2e3ac1b0409c35b5f11329b9f,
+        type: 3}
+      propertyPath: <animationStateHash>k__BackingField
+      value: 125937960
+      objectReference: {fileID: 0}
     - target: {fileID: 5939844093839516718, guid: 0e1013a2e3ac1b0409c35b5f11329b9f,
         type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6369464509855876877, guid: 0e1013a2e3ac1b0409c35b5f11329b9f,
+        type: 3}
+      propertyPath: <animationClipHash>k__BackingField
+      value: 2081823275
+      objectReference: {fileID: 0}
+    - target: {fileID: 6369464509855876877, guid: 0e1013a2e3ac1b0409c35b5f11329b9f,
+        type: 3}
+      propertyPath: <animationStateHash>k__BackingField
+      value: 2081823275
+      objectReference: {fileID: 0}
     - target: {fileID: 6568389614725817363, guid: 0e1013a2e3ac1b0409c35b5f11329b9f,
         type: 3}
       propertyPath: simulationSpeed
       value: 1.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7446085625820911145, guid: 0e1013a2e3ac1b0409c35b5f11329b9f,
+        type: 3}
+      propertyPath: <priority>k__BackingField
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7446085625820911145, guid: 0e1013a2e3ac1b0409c35b5f11329b9f,
+        type: 3}
+      propertyPath: <animationStateHash>k__BackingField
+      value: -1610822797
       objectReference: {fileID: 0}
     - target: {fileID: 8312331274368447889, guid: 0e1013a2e3ac1b0409c35b5f11329b9f,
         type: 3}
@@ -72730,6 +72948,21 @@ PrefabInstance:
         type: 3}
       propertyPath: UVModule.flipV
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8815473728286705829, guid: 0e1013a2e3ac1b0409c35b5f11329b9f,
+        type: 3}
+      propertyPath: <priority>k__BackingField
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 8815473728286705829, guid: 0e1013a2e3ac1b0409c35b5f11329b9f,
+        type: 3}
+      propertyPath: <animationClipHash>k__BackingField
+      value: 137525990
+      objectReference: {fileID: 0}
+    - target: {fileID: 8815473728286705829, guid: 0e1013a2e3ac1b0409c35b5f11329b9f,
+        type: 3}
+      propertyPath: <animationStateHash>k__BackingField
+      value: 137525990
       objectReference: {fileID: 0}
     - target: {fileID: 8898750550850796922, guid: 0e1013a2e3ac1b0409c35b5f11329b9f,
         type: 3}

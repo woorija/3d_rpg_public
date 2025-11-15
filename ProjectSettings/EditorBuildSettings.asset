@@ -15,20 +15,14 @@ EditorBuildSettings:
     path: Assets/Scenes/OtherScenes/LoadingScene.unity
     guid: 20822a94d673def41b125e6f7c363017
   - enabled: 1
-    path: Assets/Scenes/MapScenes/Map1Scene.unity
-    guid: 99c9720ab356a0642a771bea13969a05
+    path: Assets/Scenes/MapScenes/Region1/Map1/Map1.unity
+    guid: d877b39b6b46f1444ab4bf57e41af6c7
   - enabled: 1
-    path: Assets/Scenes/MapScenes/Map2Scene.unity
-    guid: 6eca5031e37e1554ea595112597aca5b
+    path: Assets/Scenes/MapScenes/Region1/Map2/Map2.unity
+    guid: 6b8bf5b8782dfa8458ee2f657c161b5f
   - enabled: 1
-    path: Assets/Scenes/MapScenes/DemoScene_01.unity
-    guid: d5673b812d5fa6d4abc53777e9b3fa6b
-  - enabled: 1
-    path: Assets/Scenes/MapScenes/DemoScene_Classic_Trees.unity
-    guid: 8866da7caad60954a93a5a2f437a384b
-  - enabled: 0
-    path: Assets/Scenes/OtherScenes/TestScene.unity
-    guid: a039a26de4441d2468fdb08c672a0161
+    path: Assets/Scenes/MapScenes/Region1/Map3/Map3.unity
+    guid: 217278b980fbc3e4c9bb98087762fcd0
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: c5b79e0c71c88b840b94898a38957634,
       type: 2}

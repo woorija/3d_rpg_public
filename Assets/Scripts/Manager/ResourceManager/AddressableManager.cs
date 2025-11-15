@@ -34,7 +34,7 @@ public class AddressableManager : SingletonBehaviour<AddressableManager>
                     loadedHandles.Remove(_key);
                     if (handle.IsValid())
                     {
-                        Addressables.Release(handle);
+                        Addressables.Release(handle);                
                     }
                     break;
                 case AsyncOperationStatus.None:

@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
-using NUnit.Framework.Interfaces;
 
 #if UNITY_EDITOR
 [CustomEditor(typeof(BT_DecoratorNode), true)]
@@ -128,14 +127,20 @@ public class DecoratorNodeEditor : Editor
     {
         BT_IfNode node = (BT_IfNode)target;
         node.SetChildNode(CreateNode<BT_CheckDie>(node, "CheckDie"));
-        node.SetSuccessNode(CreateNode<BT_Die>(node, "Die"));
+        BT_SequenceNode sequenceNode = CreateNode<BT_SequenceNode>(node, "Sequence(die Animation)");
+        sequenceNode.AddNode(CreateNode<BT_ChangeAnimation>(sequenceNode, "ChangeAnimation"));
+        sequenceNode.AddNode(CreateNode<BT_Die>(sequenceNode, "Die"));
+        node.SetSuccessNode(sequenceNode);
         node.SetFailureNode(CreateNode<BT_IfNode>(node, "If(stagger logic)"));
     }
     void CreateStaggerPreset()
     {
         BT_IfNode node = (BT_IfNode)target;
         node.SetChildNode(CreateNode<BT_CheckStagger>(node, "CheckStagger"));
-        node.SetSuccessNode(CreateNode<BT_Stagger>(node, "Stagger"));
+        BT_SequenceNode sequenceNode = CreateNode<BT_SequenceNode>(node, "Sequence(stagger Animation)");
+        sequenceNode.AddNode(CreateNode<BT_ChangeAnimation>(sequenceNode, "ChangeAnimation"));
+        sequenceNode.AddNode(CreateNode<BT_Stagger>(sequenceNode, "Stagger"));
+        node.SetSuccessNode(sequenceNode);
         node.SetFailureNode(CreateNode<BT_SelectorNode>(node, "Selector(main logic)"));
     }
     void SetUpIfNode()

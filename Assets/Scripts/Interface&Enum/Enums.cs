@@ -27,6 +27,7 @@ public enum StateType
     Roll,
     Attack,
     Buff,
+    ActiveSkillEnter,
     ActiveSkill,
     Hit,
     Die

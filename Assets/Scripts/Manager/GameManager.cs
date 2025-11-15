@@ -7,6 +7,7 @@ public class GameManager : SingletonBehaviour<GameManager>, IInputBindable
 {
     public GameMode gameMode = GameMode.ControllMode;
     [SerializeField] CinemachineCamera cineCam;
+    [SerializeField] Skybox mainCamSkybox;
     public static bool playerControllable {  get; private set; }
     string screenshotPath;
 
@@ -84,6 +85,11 @@ public class GameManager : SingletonBehaviour<GameManager>, IInputBindable
     public void CameraTeleport(Transform _player, Vector3 _deltaPos)
     {
         cineCam.OnTargetObjectWarped(_player, _deltaPos);
+    }
+
+    public void ChangeSkybox(Material _material)
+    {
+        mainCamSkybox.material = _material;
     }
     public void SetControllable(bool _value)
     {

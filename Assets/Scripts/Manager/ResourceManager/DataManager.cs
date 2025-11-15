@@ -556,7 +556,7 @@ public class DataManager : SingletonBehaviour<DataManager>
         }
         else
         {
-            await CustomSceneManager.Instance.LoadScene("Map1Scene", Vector3.zero);
+            await CustomSceneManager.Instance.LoadScene("Map1", new Vector3(15,3,8));
         }
     }
     public void LoadQuest()

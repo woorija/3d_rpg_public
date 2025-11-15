@@ -1,16 +1,16 @@
+#if UNITY_EDITOR
 using UnityEngine;
 using UnityEditor;
 using System;
 using System.Linq;
 
-#if UNITY_EDITOR
 [CustomEditor(typeof(BT_ActionNode), true)]
 public class ActionNodeEditor : Editor
 {
-    Type[] actionNodeTypes;
-    string[] actionNodeNames;
-    int selectedIndex = -1;
-    private void OnEnable()
+    protected Type[] actionNodeTypes;
+    protected string[] actionNodeNames;
+    protected int selectedIndex = -1;
+    protected virtual void OnEnable()
     {
         actionNodeTypes = AppDomain.CurrentDomain.GetAssemblies()
             .SelectMany(assembly => assembly.GetTypes())

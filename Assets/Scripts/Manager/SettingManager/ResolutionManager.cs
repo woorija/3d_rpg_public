@@ -87,11 +87,18 @@ public class ResolutionManager : MonoBehaviour
     public void LoadSetting(SettingDataSO _settingData)
     {
         resolutionDropdown.value = _settingData.resolution;
+        resolutionIndex = _settingData.resolution;
         screenmodeToggle.isOn = _settingData.screenMode;
         if(screenmodeToggle.isOn)
         {
             resolutionDropdown.interactable = false;
+            screenMode = FullScreenMode.FullScreenWindow;
         }
+        else
+        {
+            screenMode = FullScreenMode.Windowed;
+        }
+
         vSyncToggle.isOn = _settingData.vsync;
         frameRateDropdown.value = _settingData.frameRate;
 

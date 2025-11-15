@@ -11,9 +11,11 @@ public class PlayerController : MonoBehaviour, IInputBindable
 
     private Vector2 inputVector;
     private Vector3 moveDirection;
-    private Vector3 gravityVelocity = Vector3.zero;
+    private float gravityVelocity;
+    private Vector3 moveVector = Vector3.zero;
 
     public bool isRun { get; private set; } = false;
+    bool jumpTriggered = false;
     public float StateMoveSpeedMultiplier { get; set; }
     public int currentPlaySkillId { get; private set; }
     Action[] onUseQuickSlots;
@@ -63,16 +65,32 @@ public class PlayerController : MonoBehaviour, IInputBindable
     }
     private void Update()
     {
-        if (!(GameManager.Instance.gameMode != GameMode.ControllMode))
+        if (GameManager.Instance.gameMode == GameMode.ControllMode)
         {
             FSM.StateUpdate();
             if(inputVector != Vector2.zero)
             {
                 Move();
             }
+            else
+            {
+                moveVector = Vector3.zero;
+            }
         }
+
+        if (jumpTriggered)
+        {
+            gravityVelocity = PlayerStatus.JumpForce;
+            moveVector.y += gravityVelocity * Time.deltaTime;
+            jumpTriggered = false;
+        }
+        else
+        {
+            ApplyGravity();
+        }
+
         status.StaminaUpdate();
-        ApplyGravity();
+        playerController.Move(moveVector);
     }
     #region FSM
     private void FSMInit()
@@ -82,48 +100,46 @@ public class PlayerController : MonoBehaviour, IInputBindable
     }
     private void SetAllStates()
     {
-        BaseState temp;
-        temp = GetComponentInChildren<Player_Idle>();
-        FSM.SetState(StateType.Idle, temp);
-        temp = GetComponentInChildren<Player_Walk>();
-        FSM.SetState(StateType.Walk, temp);
-        temp = GetComponentInChildren<Player_Jump>();
-        FSM.SetState(StateType.Jump, temp);
-        temp = GetComponentInChildren<Player_Fall>();
-        FSM.SetState(StateType.Fall, temp);
-        temp = GetComponentInChildren<Player_Land>();
-        FSM.SetState(StateType.Land, temp);
-        temp = GetComponentInChildren<Player_Roll>();
-        FSM.SetState(StateType.Roll, temp);
-        temp = GetComponentInChildren<Player_Attack>();
-        FSM.SetState(StateType.Attack, temp);
-        temp = GetComponentInChildren<Player_Buff>();
-        FSM.SetState(StateType.Buff, temp);
-        temp = GetComponentInChildren<Player_ActiveSkill>();
-        FSM.SetState(StateType.ActiveSkill, temp);
-        temp = GetComponentInChildren<Player_Hit>();
-        FSM.SetState(StateType.Hit, temp);
-        temp = GetComponentInChildren<Player_Die>();
-        FSM.SetState(StateType.Die, temp);
+        SetState<Player_Idle>(StateType.Idle);
+        SetState<Player_Walk>(StateType.Walk);
+        SetState<Player_Run>(StateType.Run);
+        SetState<Player_Jump>(StateType.Jump);
+        SetState<Player_Fall>(StateType.Fall);
+        SetState<Player_Land>(StateType.Land);
+        SetState<Player_Roll>(StateType.Roll);
+        SetState<Player_Attack>(StateType.Attack);
+        SetState<Player_Buff>(StateType.Buff);
+        SetState<Player_ActiveSkillEnter>(StateType.ActiveSkillEnter);
+        SetState<Player_ActiveSkill>(StateType.ActiveSkill);
+        SetState<Player_Hit>(StateType.Hit);
+        SetState<Player_Die>(StateType.Die);
+    }
+    private void SetState<T>(StateType _type) where T : BaseState
+    {
+        var state = GetComponentInChildren<T>();
+        FSM.SetState(_type, state);
     }
     #endregion
     #region InputSystem
     private void PerformedMovement(InputAction.CallbackContext context)
     {
         inputVector = context.ReadValue<Vector2>();
-        if (FSM.CanChangeState(StateType.Walk))
+        if (IsGround())
         {
-            FSM.ChangeState(StateType.Walk);
+            if (isRun && FSM.CanChangeState(StateType.Run))
+            {
+                FSM.ChangeState(StateType.Run);
+            }
+            else if (FSM.CanChangeState(StateType.Walk))
+            {
+                FSM.ChangeState(StateType.Walk);
+            }
         }
-        animator.SetBool(AnimationKey.Move, true);
-        animator.SetFloat(AnimationKey.DirectionX, inputVector.x);
-        animator.SetFloat(AnimationKey.DirectionY, inputVector.y);
     }
     private void CanceledMovement(InputAction.CallbackContext context)
     {
         inputVector = Vector2.zero;
-        animator.SetBool(AnimationKey.Move, false);
-        if (FSM.GetCurrentStateType() == StateType.Walk)
+        if (FSM.GetCurrentStateType() == StateType.Walk || FSM.GetCurrentStateType() == StateType.Run)
         {
             FSM.ChangeState(StateType.Idle);
         }
@@ -131,10 +147,29 @@ public class PlayerController : MonoBehaviour, IInputBindable
     private void PerformedRun(InputAction.CallbackContext context)
     {
         isRun = true;
-        animator.SetBool(AnimationKey.IsRun, isRun);
+        if (IsGround() && FSM.GetCurrentStateType() == StateType.Walk)
+        {
+            FSM.ChangeState(StateType.Run);
+        }
+    }
+    private void CanceledRun(InputAction.CallbackContext context)
+    {
+        isRun = false;
+        if (IsGround())
+        {
+            if (IsMove() && FSM.CanChangeState(StateType.Walk))
+            {
+                FSM.ChangeState(StateType.Walk);
+            }
+            else if (FSM.CanChangeState(StateType.Idle))
+            {
+                FSM.ChangeState(StateType.Idle);
+            }
+        }
     }
     private void PerformedRoll(InputAction.CallbackContext context)
     {
+        if (!IsGround()) return;
         if (status.Stamina < 30f) return;
         if (FSM.CanChangeState(StateType.Roll))
         {
@@ -142,11 +177,6 @@ public class PlayerController : MonoBehaviour, IInputBindable
             status.ExhaustTime = 2.5f;
             FSM.ChangeState(StateType.Roll);
         }
-    }
-    private void CanceledRun(InputAction.CallbackContext context)
-    {
-        isRun = false;
-        animator.SetBool(AnimationKey.IsRun, isRun);
     }
     private void PerformedJump(InputAction.CallbackContext context)
     {
@@ -157,7 +187,7 @@ public class PlayerController : MonoBehaviour, IInputBindable
     }
     private void PerformedAttack(InputAction.CallbackContext context)
     {
-        if (!animator.GetBool(AnimationKey.IsPlayingSkill) && FSM.CanChangeState(StateType.Attack))
+        if (FSM.CanChangeState(StateType.Attack))
         {
             currentPlaySkillId = status.playerClass * 10 + status.classRank;
             FSM.ChangeState(StateType.Attack);
@@ -198,12 +228,12 @@ public class PlayerController : MonoBehaviour, IInputBindable
     void UseActiveSkill(int _id, int _useMp)
     {
         currentPlaySkillId = _id; // 스킬관련 계산용 추가 변수
-        if (!animator.GetBool(AnimationKey.IsPlayingSkill) && FSM.CanChangeState(StateType.ActiveSkill))
+        Skill skill = SkillDataBase.SkillDB[_id];
+        if (FSM.GetPriority() <= skill.entryPriority && GameManager.Instance.gameMode == GameMode.ControllMode)
         {
             status.Mp -= _useMp;
-            CooltimeManager.Instance.AddCooltime(_id, SkillDataBase.SkillDB[_id].coolTime);
-            animator.SetInteger(AnimationKey.SkillId, _id);
-            FSM.ChangeState(StateType.ActiveSkill);
+            CooltimeManager.Instance.AddCooltime(_id, skill.coolTime);
+            FSM.ChangeState(StateType.ActiveSkillEnter);
         }
     }
     void UseBuffSkill(int _id, int _useMp)
@@ -218,15 +248,19 @@ public class PlayerController : MonoBehaviour, IInputBindable
     #endregion
     public void Jump()
     {
-        gravityVelocity.y = PlayerStatus.JumpForce;
+        jumpTriggered = true;
     }
     private void ApplyGravity()
     {
         if (!playerController.isGrounded)
         {
-            gravityVelocity.y += PlayerStatus.Gravity * Time.deltaTime;
+            gravityVelocity += PlayerStatus.Gravity * Time.deltaTime;
+            moveVector.y += gravityVelocity * Time.deltaTime;
         }
-        playerController.Move(gravityVelocity * Time.deltaTime);
+        else
+        {
+            gravityVelocity = 0f;
+        }
     }
     public bool IsMove()
     {
@@ -238,7 +272,7 @@ public class PlayerController : MonoBehaviour, IInputBindable
     }
     public bool IsFall()
     {
-        if (!playerController.isGrounded && gravityVelocity.y < 0f)
+        if (!playerController.isGrounded && gravityVelocity < -1f)
         {
             return true;
         }
@@ -294,24 +328,22 @@ public class PlayerController : MonoBehaviour, IInputBindable
     }
     public void Move()
     {
-        if (isRun)
+        float moveSpeed = PlayerStatus.MoveSpeed;
+        if (isRun && FSM.currentStateType == StateType.Run)
         {
             if (status.Stamina >= 0.5f)
             {
                 status.Stamina -= 0.5f;
                 status.ExhaustTime = 0.5f;
-                playerController.Move(moveDirection * (PlayerStatus.MoveSpeed + PlayerStatus.RunSpeed) * status.MoveSpeedMultiplier * StateMoveSpeedMultiplier * Time.deltaTime);
+
+                moveSpeed = PlayerStatus.MoveSpeed + PlayerStatus.RunSpeed;
             }
             else
             {
                 isRun = false;
-                animator.SetBool(AnimationKey.IsRun, isRun);
             }
         }
-        else
-        {
-            playerController.Move(moveDirection * PlayerStatus.MoveSpeed * status.MoveSpeedMultiplier * StateMoveSpeedMultiplier * Time.deltaTime);
-        }
+        moveVector = moveDirection * moveSpeed * status.MoveSpeedMultiplier * StateMoveSpeedMultiplier * Time.deltaTime;
     }
     public void MoveRoll()
     {
@@ -319,15 +351,19 @@ public class PlayerController : MonoBehaviour, IInputBindable
     }
     public void AnimationEnd()
     {
-        animator.SetTrigger(AnimationKey.AnimationEnd);
         FSM.ChangeState(StateType.Idle);
     }
     public void Teleport(Vector3 _pos)
     {
         Vector3 deltaPos = _pos - transform.position;
-        gravityVelocity = Vector3.zero;
-        playerController.Move(deltaPos);
-
+        moveVector = Vector3.zero;
+        gravityVelocity = 0f;
+        playerController.enabled = false;
+        
+        transform.position = _pos;
+        
+        playerController.enabled = true;
+        Debug.Log(deltaPos);
         GameManager.Instance.CameraTeleport(transform, deltaPos);
     }
     public void SetInvincible(bool _value)

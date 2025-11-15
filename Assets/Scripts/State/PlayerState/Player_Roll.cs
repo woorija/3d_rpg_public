@@ -4,7 +4,6 @@ public class Player_Roll : Player_Base
     {
         base.StateEnter();
         controller.StateMoveSpeedMultiplier = 0f;
-        animator.SetTrigger(AnimationKey.Roll);
         controller.SetInvincible(true);
     }
     public override void StateUpdate()

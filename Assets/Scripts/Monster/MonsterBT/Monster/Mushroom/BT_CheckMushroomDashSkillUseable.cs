@@ -1,5 +1,3 @@
-using UnityEngine;
-
 public class BT_CheckMushroomDashSkillUseable : BT_ActionNode
 {
     MushroomBlackBoard blackBoard;
@@ -14,7 +12,7 @@ public class BT_CheckMushroomDashSkillUseable : BT_ActionNode
         {
             if (blackBoard.CheckAngle(transform.position, 15f))
             {
-                if (blackBoard.CheckDistance(3f))
+                if (blackBoard.CheckDistance(9f))
                 {
                     if (blackBoard.CheckHeightDifference(2f))
                     {

@@ -8,7 +8,6 @@ public class Player_Die : Player_Base
     public override void StateEnter()
     {
         base.StateEnter();
-        animator.SetTrigger(AnimationKey.IsDie);
     }
 
     public override void StateUpdate()

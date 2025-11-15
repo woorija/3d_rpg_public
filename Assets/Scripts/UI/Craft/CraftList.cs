@@ -7,16 +7,15 @@ public class CraftList : MonoBehaviour
     [SerializeField] Transform UseableTypeParent;
     [SerializeField] Transform MiscTypeParent;
 
-    List<int> craftId;
     public void SetList()
     {
-        craftId = new List<int>(CraftDataBase.CraftDB.Keys);
+        List<int> craftIds = new List<int>(CraftDataBase.CraftDB.Keys);
         CraftSettingButton temp;
 
-        for(int i = 0; i < craftId.Count; i++)
+        for(int i = 0; i < craftIds.Count; i++)
         {
             temp = PoolManager.Instance.craftButtonPool.Get();
-            temp.SetIndex(i);
+            temp.SetIndex(craftIds[i]);
 
             int id = temp.GetItemId();
             if(id >= 300000000)

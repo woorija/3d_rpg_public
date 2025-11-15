@@ -33,7 +33,11 @@ public class SettingUI : MonoBehaviour, ICloseable
         DataManager.Instance.SaveSetting();
         gameObject.SetActive(false);
     }
-
+    public void StartClose()
+    {
+        GameManager.Instance.GameModeChange(GameMode.ControllMode);
+        gameObject.SetActive(false);
+    }
     public bool IsActive()
     {
         return gameObject.activeSelf;

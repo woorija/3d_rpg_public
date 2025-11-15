@@ -22,8 +22,8 @@ public class CustomSceneManager : DontDestroySingletonBehaviour<CustomSceneManag
     public async UniTaskVoid LoadManagerScene()
     {
         loadingScreen.SetActive(true);
-        await SceneManager.LoadSceneAsync("ManagerScene", LoadSceneMode.Additive).ToUniTask();
-        await SceneManager.UnloadSceneAsync("TitleScene").ToUniTask();
+        await SceneManager.LoadSceneAsync("ManagerScene", LoadSceneMode.Additive);
+        await SceneManager.UnloadSceneAsync("TitleScene");
     }
     public async UniTask LoadScene(string _scenename, Vector3 _pos)
     {
@@ -48,7 +48,7 @@ public class CustomSceneManager : DontDestroySingletonBehaviour<CustomSceneManag
             
             if (!currentMapName.Equals(""))
             {
-                await SceneManager.UnloadSceneAsync(currentMapName).ToUniTask();
+                await SceneManager.UnloadSceneAsync(currentMapName);
             }
             await FadeInScreen();
             var sceneLoadOperation = SceneManager.LoadSceneAsync(_scenename, LoadSceneMode.Additive);
@@ -69,7 +69,7 @@ public class CustomSceneManager : DontDestroySingletonBehaviour<CustomSceneManag
             }
             await FadeOutScreen();
             loadingScreen.gameObject.SetActive(false);
-            await SceneManager.UnloadSceneAsync(loadingSceneName).ToUniTask();
+            await SceneManager.UnloadSceneAsync(loadingSceneName);
 
             GameManager.Instance.GameModeChange(GameMode.ControllMode);
             playerTeleportEvent.Invoke(_pos);

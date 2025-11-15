@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class GenericMonsterAnimationEvent<TBehaviorTree, TBlackBoard> : MonoBehaviour where TBehaviorTree : BehaviorTree where TBlackBoard : BaseBlackBoard

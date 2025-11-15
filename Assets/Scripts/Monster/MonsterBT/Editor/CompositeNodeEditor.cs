@@ -139,35 +139,63 @@ public class CompositeNodeEditor : Editor
 
         BT_IfNode childIfNode = CreateNode<BT_IfNode>(ifNode, "If");
         ifNode.SetSuccessNode(childIfNode);
-        BT_RotationToPlayer rotationToPlayer = CreateNode<BT_RotationToPlayer>(ifNode, "RotationToPlayer");
+        
         childIfNode.SetChildNode(CreateNode<BT_CheckNormalAttackCooltime>(childIfNode, "CheckNormalAttackCooltime"));
-        childIfNode.SetSuccessNode(CreateNode<BT_NormalAttack>(childIfNode, "NormalAttack"));
-        childIfNode.SetFailureNode(rotationToPlayer);
-        ifNode.SetFailureNode(rotationToPlayer);
+
+        BT_SequenceNode attackAnimationSequenceNode = CreateNode<BT_SequenceNode>(childIfNode, "Sequence(normalAttack Animation)");
+        attackAnimationSequenceNode.AddNode(CreateNode<BT_ChangeAnimation>(attackAnimationSequenceNode, "ChangeAnimation"));
+        attackAnimationSequenceNode.AddNode(CreateNode<BT_PlayAnimationUntilEnd>(attackAnimationSequenceNode, "NormalAttack"));
+
+        BT_SequenceNode idleAnimationSequenceNode = CreateNode<BT_SequenceNode>(ifNode, "Sequence(idle Animation)");
+        idleAnimationSequenceNode.AddNode(CreateNode<BT_ChangeAnimation>(idleAnimationSequenceNode, "ChangeAnimation"));
+        idleAnimationSequenceNode.AddNode(CreateNode<BT_RotationToPlayer>(idleAnimationSequenceNode, "RotationToPlayer"));
+
+        childIfNode.SetSuccessNode(attackAnimationSequenceNode);
+        childIfNode.SetFailureNode(idleAnimationSequenceNode);
+        ifNode.SetFailureNode(idleAnimationSequenceNode);
     }
     void CreateReturnPreset()
     {
         BT_CompositeNode node = (BT_CompositeNode)target;
         BT_SequenceNode sequenceNode = CreateNode<BT_SequenceNode>(node, "Sequence(Return logic)");
         node.AddNode(sequenceNode);
+
         sequenceNode.AddNode(CreateNode<BT_CheckReturn>(sequenceNode, "CheckReturn"));
-        sequenceNode.AddNode(CreateNode<BT_ReturnSpawnPoint>(sequenceNode, "ReturnSpawnPoint"));
+        BT_SequenceNode moveAnimationSequenceNode = CreateNode<BT_SequenceNode>(sequenceNode, "Sequence(move Animation)");
+        moveAnimationSequenceNode.AddNode(CreateNode<BT_ChangeAnimation>(moveAnimationSequenceNode, "ChangeAnimation"));
+        moveAnimationSequenceNode.AddNode(CreateNode<BT_ReturnSpawnPoint>(moveAnimationSequenceNode, "ReturnSpawnPoint"));
+        
+        sequenceNode.AddNode(moveAnimationSequenceNode);
     }
     void CreateTrackingPreset()
     {
         BT_CompositeNode node = (BT_CompositeNode)target;
         BT_SequenceNode sequenceNode = CreateNode<BT_SequenceNode>(node, "Sequence(Tracking logic)");
         node.AddNode(sequenceNode);
+
         sequenceNode.AddNode(CreateNode<BT_CheckTrackingPlayer>(sequenceNode, "CheckTrackingPlayer"));
-        sequenceNode.AddNode(CreateNode<BT_TrackingMovement>(sequenceNode, "TrackingMovement"));
+        BT_SequenceNode moveAnimationSequenceNode = CreateNode<BT_SequenceNode>(sequenceNode, "Sequence(move Animation)");
+        moveAnimationSequenceNode.AddNode(CreateNode<BT_ChangeAnimation>(moveAnimationSequenceNode, "ChangeAnimation"));
+        moveAnimationSequenceNode.AddNode(CreateNode<BT_TrackingMovement>(moveAnimationSequenceNode, "TrackingMovement"));
+        
+        sequenceNode.AddNode(moveAnimationSequenceNode);
     }
     void CreateIdlePreset()
     {
         BT_CompositeNode node = (BT_CompositeNode)target;
         BT_SelectorNode selectorNode = CreateNode<BT_SelectorNode>(node, "Selector(Idle logic)");
         node.AddNode(selectorNode);
-        selectorNode.AddNode(CreateNode<BT_Idle>(selectorNode, "Idle"));
-        selectorNode.AddNode(CreateNode<BT_IdleMovement>(selectorNode, "IdleMovement"));
+
+        BT_SequenceNode idleAnimationSequenceNode = CreateNode<BT_SequenceNode>(selectorNode, "Sequence(idle Animation)");
+        idleAnimationSequenceNode.AddNode(CreateNode<BT_Idle>(idleAnimationSequenceNode, "Idle"));
+        idleAnimationSequenceNode.AddNode(CreateNode<BT_ChangeAnimation>(idleAnimationSequenceNode, "ChangeAnimation"));
+
+        BT_SequenceNode moveAnimationSequenceNode = CreateNode<BT_SequenceNode>(selectorNode, "Sequence(move Animation)");
+        moveAnimationSequenceNode.AddNode(CreateNode<BT_ChangeAnimation>(moveAnimationSequenceNode, "ChangeAnimation"));
+        moveAnimationSequenceNode.AddNode(CreateNode<BT_IdleMovement>(moveAnimationSequenceNode, "IdleMovement"));
+
+        selectorNode.AddNode(idleAnimationSequenceNode);
+        selectorNode.AddNode(moveAnimationSequenceNode);
         selectorNode.AddNode(CreateNode<BT_ChangeIdlePosition>(selectorNode, "ChangeIdlePosition"));
     }
 

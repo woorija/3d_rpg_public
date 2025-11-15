@@ -1,15 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 public class BT_Stagger : BT_ActionNode
 {
+    protected BaseBlackBoard blackBoard;
+    protected override void Awake()
+    {
+        base.Awake();
+        blackBoard = BT.GetBlackBoard();
+    }
     public override BTResult Execute()
     {
-        BaseBlackBoard blackBoard = BT.GetBlackBoard();
         if (BT.IsAnimationEnd(AnimationKey.Stagger))
         {
-            BT.ChangeAnimatorTrigger(AnimationKey.AnimationEnd);
             BT.CheckDeleteRunningNode(99);
             return BTResult.Success;
         }
@@ -17,7 +17,6 @@ public class BT_Stagger : BT_ActionNode
         {
             BT.PlayAnimation();
         }
-        BT.ChangeAnimatorTrigger(AnimationKey.Stagger);
         BT.GetRunningNode(this);
         return BTResult.Running;
     }

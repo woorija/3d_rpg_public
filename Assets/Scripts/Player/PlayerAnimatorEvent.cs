@@ -4,6 +4,7 @@ public class PlayerAnimatorEvent : MonoBehaviour
 {
     [SerializeField] PlayerEffectManager playerEffectList;
     [SerializeField] Player_Land stateLand;
+    [SerializeField] Player_ActiveSkill stateActiveSkill;
     [SerializeField] PlayerController controller;
     [SerializeField] HitUtility hitUtility;
 
@@ -77,6 +78,10 @@ public class PlayerAnimatorEvent : MonoBehaviour
     public void LandMotionSkip()
     {
         stateLand.OnMotionSkip();
+    }
+    public void SetSkillPriority(int _priority)
+    {
+        stateActiveSkill.SetPriority(_priority);
     }
     public void AnimationEnd()
     {

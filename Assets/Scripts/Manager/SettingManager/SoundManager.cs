@@ -20,8 +20,8 @@ public class SoundManager : SingletonBehaviour<SoundManager>
     int shortIndex;
     int longIndex;
 
-    float masterBGMVolume;
-    float masterSFXVolume;
+    float masterBGMVolume = 1f;
+    float masterSFXVolume = 1f;
     float fadeTime = 1f;
     int currentFadeId = 0; // 페이드인,아웃 식별코드
 

@@ -3,7 +3,6 @@ public class Player_Fall : Player_Base
     public override void StateEnter()
     {
         base.StateEnter();
-        animator.SetTrigger(AnimationKey.Fall);
         controller.StateMoveSpeedMultiplier = 0.3f;
     }
 

@@ -36,8 +36,6 @@ public class PoolManagerAutoGenerator
             writer.WriteLine("// </auto-generated>");
             writer.WriteLine("//------------------------------------------------------------------------------");
             writer.WriteLine();
-            writer.WriteLine("#if UNITY_EDITOR");
-            writer.WriteLine();
             writer.WriteLine("using UnityEngine;");
             writer.WriteLine("using UnityEngine.Pool;");
             writer.WriteLine("using Cysharp.Threading.Tasks;");
@@ -237,7 +235,6 @@ public class PoolManagerAutoGenerator
             writer.WriteLine("        _temp.SetPool(null);");
             writer.WriteLine("    }");
             writer.WriteLine("}");
-            writer.WriteLine("#endif");
         }
 
         AssetDatabase.Refresh();

@@ -8,6 +8,7 @@ public class Skill
     public int prevSkillId;
     public int prevSkillLevel;
     public int skillType;
+    public int entryPriority;
     public int initialAcquisitionLevel;
     public int increaseAcquisitionLevel;
     public int masterLevel;
@@ -19,12 +20,13 @@ public class Skill
     public float interval;
     public List<int> initialSkillMultiplier;
     public List<int> increaseSkillMultiplier;
-    public Skill(int _id, int _prevSkillId, int _prevSkillLevel, int _skillType, int _initialAcquisitionLevel, int _increaseAcquisitionLevel, int _masterLevel, int _acquisitionSp, int _initialMp, float _increaseMp, float _coolTime, float _duration, float _interval, List<int> _initialSkillMultipliers, List<int> _increaseSkillMultipliers)
+    public Skill(int _id, int _prevSkillId, int _prevSkillLevel, int _skillType, int _entryPriority, int _initialAcquisitionLevel, int _increaseAcquisitionLevel, int _masterLevel, int _acquisitionSp, int _initialMp, float _increaseMp, float _coolTime, float _duration, float _interval, List<int> _initialSkillMultipliers, List<int> _increaseSkillMultipliers)
     {
         id = _id;
         prevSkillId = _prevSkillId;
         prevSkillLevel = _prevSkillLevel;
         skillType = _skillType;
+        entryPriority = _entryPriority;
         initialAcquisitionLevel = _initialAcquisitionLevel;
         increaseAcquisitionLevel = _increaseAcquisitionLevel;
         masterLevel = _masterLevel;
@@ -80,7 +82,7 @@ public class SkillDataBase : MonoBehaviour, ICSVRead
             initialSkillMultipliers = new List<int>();
             increaseSkillMultipliers = new List<int>();
 
-            for (int j = 13; j < values.Length - 1; j += 2)
+            for (int j = 14; j < values.Length - 1; j += 2)
             {
                 if (string.IsNullOrEmpty(values[j])) break;
 
@@ -88,7 +90,7 @@ public class SkillDataBase : MonoBehaviour, ICSVRead
                 increaseSkillMultipliers.Add(CSVReader.GetIntData(values[j + 1]));
             }
             int skillId = CSVReader.GetIntData(values[0]);
-            SkillDB.Add(skillId, new Skill(skillId, CSVReader.GetIntData(values[1]), CSVReader.GetIntData(values[2]), CSVReader.GetIntData(values[3]), CSVReader.GetIntData(values[4]), CSVReader.GetIntData(values[5]), CSVReader.GetIntData(values[6]), CSVReader.GetIntData(values[7]), CSVReader.GetIntData(values[8]), CSVReader.GetFloatData(values[9]), CSVReader.GetFloatData(values[10]), CSVReader.GetFloatData(values[11]), CSVReader.GetFloatData(values[12]), initialSkillMultipliers, increaseSkillMultipliers));
+            SkillDB.Add(skillId, new Skill(skillId, CSVReader.GetIntData(values[1]),CSVReader.GetIntData(values[2]), CSVReader.GetIntData(values[3]), CSVReader.GetIntData(values[4]), CSVReader.GetIntData(values[5]), CSVReader.GetIntData(values[6]), CSVReader.GetIntData(values[7]), CSVReader.GetIntData(values[8]), CSVReader.GetIntData(values[9]), CSVReader.GetFloatData(values[10]), CSVReader.GetFloatData(values[11]), CSVReader.GetFloatData(values[12]), CSVReader.GetFloatData(values[13]), initialSkillMultipliers, increaseSkillMultipliers));
 
             //직업별 스킬 테이블 구성
             int classRank = skillId / 10000;

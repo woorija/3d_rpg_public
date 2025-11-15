@@ -1,8 +1,13 @@
 public class BT_CheckReturn : BT_ActionNode
 {
+    protected BaseBlackBoard blackBoard;
+    protected override void Awake()
+    {
+        base.Awake();
+        blackBoard = BT.GetBlackBoard();
+    }
     public override BTResult Execute()
     {
-        BaseBlackBoard blackBoard = BT.GetBlackBoard();
         if (blackBoard.isReturn)
         {
             blackBoard.ReleaseHUD();
@@ -13,5 +18,4 @@ public class BT_CheckReturn : BT_ActionNode
             return BTResult.Failure;
         }
     }
-
 }

@@ -1,13 +1,16 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class BT_RotationToPlayer : BT_ActionNode
 {
     [SerializeField] float rotationSpeed;
+    protected BaseBlackBoard blackBoard;
+    protected override void Awake()
+    {
+        base.Awake();
+        blackBoard = BT.GetBlackBoard();
+    }
     public override BTResult Execute()
     {
-        BaseBlackBoard blackBoard = BT.GetBlackBoard();
         Vector3 RotatePos = blackBoard.player.transform.position - BT.transform.position;
         RotatePos.y = 0;
 

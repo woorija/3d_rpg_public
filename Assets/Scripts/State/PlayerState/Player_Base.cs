@@ -1,7 +1,10 @@
+using UnityEngine;
 public class Player_Base : BaseState
 {
     protected PlayerStatus status;
     protected PlayerController controller;
+    [field: SerializeField, HideInInspector] public int animationStateHash {  get; protected set; }
+
     public override void Awake()
     {
         base.Awake();
@@ -11,6 +14,7 @@ public class Player_Base : BaseState
     public override void StateEnter()
     {
         base.StateEnter();
+        animator.Play(animationStateHash);
     }
     public override void StateUpdate()
     {
@@ -20,4 +24,14 @@ public class Player_Base : BaseState
     {
         base.StateExit();
     }
+    protected float GetAnimationNormalizedTime()
+    {
+        return animator.GetCurrentAnimatorStateInfo(0).normalizedTime % 1f;
+    }
+#if UNITY_EDITOR
+    public void SetHash(int _hash)
+    {
+        animationStateHash = _hash;
+    }
+#endif
 }

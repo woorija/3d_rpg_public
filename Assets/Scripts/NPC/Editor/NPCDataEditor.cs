@@ -91,6 +91,10 @@ public class NPCDataEditor : Editor
             _data.SetShopSO(so);
             EditorUtility.SetDirty(so);
         }
+        else
+        {
+            _data.SetShopSO(null);
+        }
     }
 
     void SetNameTag(NpcData _data)

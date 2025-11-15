@@ -3,7 +3,6 @@ public class Player_ActiveSkill : Player_Base
     public override void StateEnter()
     {
         base.StateEnter();
-        DevelopUtility.Log(controller.currentPlaySkillId);
         switch (controller.currentPlaySkillId)
         {
             case 100001:
@@ -36,5 +35,9 @@ public class Player_ActiveSkill : Player_Base
         {
             controller.Rotate();
         }
+    }
+    public void SetPriority(int _priority)
+    {
+        priority = _priority;
     }
 }
