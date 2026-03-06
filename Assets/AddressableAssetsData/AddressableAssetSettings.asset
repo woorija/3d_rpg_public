@@ -15,7 +15,7 @@ MonoBehaviour:
   m_DefaultGroup: d565a8e6781f43547b594497841b35f4
   m_currentHash:
     serializedVersion: 2
-    Hash: befdaab2c00d5c28990082c9b8c8b91e
+    Hash: 00000000000000000000000000000000
   m_OptimizeCatalogSize: 0
   m_BuildRemoteCatalog: 1
   m_BundleLocalCatalog: 0
@@ -64,10 +64,15 @@ MonoBehaviour:
   m_BuildAddressablesWithPlayerBuild: 0
   m_overridePlayerVersion: 1
   m_GroupAssets:
+  - {fileID: 11400000, guid: 8d42c3a4a38131f42805f248bf537372, type: 2}
   - {fileID: 11400000, guid: a75909c9a7588c549b01c18fa69084bd, type: 2}
+  - {fileID: 11400000, guid: 783b564a271c4c344abd19e8f2fb622e, type: 2}
+  - {fileID: 11400000, guid: 3825a5c9568ed19468e2e1bb7bf9534a, type: 2}
   - {fileID: 11400000, guid: 2697971531b25e14795a45b9afff1037, type: 2}
+  - {fileID: 11400000, guid: 6a5c4d02215bdd14fb2c101d5a764fb9, type: 2}
   - {fileID: 11400000, guid: afb2d6bba70d33147ac2726decb2d96d, type: 2}
   - {fileID: 11400000, guid: e29ae6b0bb92c684f9546f5ee95566f5, type: 2}
+  - {fileID: 11400000, guid: 7bf3a6fe8d5d19942ab91d44ac869a3b, type: 2}
   - {fileID: 11400000, guid: 24ebde5596018264eb6911a26080e024, type: 2}
   - {fileID: 11400000, guid: 2fe23700ca1f5a6459b91f460b883def, type: 2}
   - {fileID: 11400000, guid: f6f188f098271114aa57c6a51e9ffd8b, type: 2}
@@ -85,27 +90,11 @@ MonoBehaviour:
       - m_Id: 9411c69d4c267cd489fbdd9aa46d598e
         m_Value: '[UnityEngine.AddressableAssets.Addressables.BuildPath]/[BuildTarget]'
       - m_Id: ac1a09faf2173d54bbef1f5c7da583af
-        m_Value: CCDBuildData/0d60fd78-1eb3-4cf2-a0d6-6d1bbfa1c1c3/latest
+        m_Value: '[UnityEngine.AddressableAssets.Addressables.BuildPath]/[BuildTarget]'
       - m_Id: c08923a2feeebcb4484e865a8dce421b
-        m_Value: https://3e987bcd-b0b9-4f22-b8d9-f31681ede3f3.client-api.unity3dusercontent.com/client_api/v1/buckets/0d60fd78-1eb3-4cf2-a0d6-6d1bbfa1c1c3/release_by_badge/latest/entry_by_path/content/?path=
+        m_Value: '{UnityEngine.AddressableAssets.Addressables.RuntimePath}/[BuildTarget]'
       - m_Id: db0a0bb3b7277e741ba5c1d2871d97b9
         m_Value: 
-      - m_Id: e9a2e65471416094cac3dcfdebebf0ba
-        m_Value: '[UnityEditor.EditorUserBuildSettings.activeBuildTarget]'
-    - m_InheritedParent: 
-      m_Id: 18f5a3eb0836e1d4d8cc909fe79bfd01
-      m_ProfileName: 3dTest
-      m_Values:
-      - m_Id: 11b63d924d6fc3c44b12c72715b9a345
-        m_Value: '{UnityEngine.AddressableAssets.Addressables.RuntimePath}/[BuildTarget]'
-      - m_Id: 9411c69d4c267cd489fbdd9aa46d598e
-        m_Value: '[UnityEngine.AddressableAssets.Addressables.BuildPath]/[BuildTarget]'
-      - m_Id: ac1a09faf2173d54bbef1f5c7da583af
-        m_Value: CCDBuildData/1e6b0971-6992-4b8f-a057-e2a163888a7f/0d60fd78-1eb3-4cf2-a0d6-6d1bbfa1c1c3/latest
-      - m_Id: c08923a2feeebcb4484e865a8dce421b
-        m_Value: https://3e987bcd-b0b9-4f22-b8d9-f31681ede3f3.client-api.unity3dusercontent.com/client_api/v1/environments/production/buckets/0d60fd78-1eb3-4cf2-a0d6-6d1bbfa1c1c3/release_by_badge/latest/entry_by_path/content/?path=
-      - m_Id: db0a0bb3b7277e741ba5c1d2871d97b9
-        m_Value: production
       - m_Id: e9a2e65471416094cac3dcfdebebf0ba
         m_Value: '[UnityEditor.EditorUserBuildSettings.activeBuildTarget]'
     m_ProfileEntryNames:
@@ -135,6 +124,12 @@ MonoBehaviour:
     - SkillIcon
     - CurrectionTable
     - PlayerEffect
+    - Map
+    - MapConfig
+    - Monster
+    - NPC
+    - Environment
+    - Region1
   m_SchemaTemplates: []
   m_GroupTemplateObjects:
   - {fileID: 11400000, guid: 068954d8e65afe34aa82d6dc829a84ff, type: 2}
@@ -147,7 +142,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: d485ed00fe58b6747a6a13219643921b, type: 2}
   - {fileID: 11400000, guid: d8337d4aad8ce1e4a99be0a12584e820, type: 2}
   - {fileID: 11400000, guid: d90a109c9d39b69428a4888a68cfbec6, type: 2}
-  m_ActiveProfileId: 18f5a3eb0836e1d4d8cc909fe79bfd01
+  m_ActiveProfileId: cc4da72b74a177f4c8fd5f21f5fe5861
   m_CcdManagedData:
     EnvironmentId: 
     EnvironmentName: 

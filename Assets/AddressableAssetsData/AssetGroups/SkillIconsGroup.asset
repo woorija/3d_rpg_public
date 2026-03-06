@@ -13,15 +13,68 @@ MonoBehaviour:
   m_Name: SkillIconsGroup
   m_EditorClassIdentifier: 
   m_GroupName: SkillIconsGroup
-  m_Data:
-    m_SerializedData: []
   m_GUID: 9b88fac2adf93ee48bc744cbaff1316a
   m_SerializeEntries:
-  - m_GUID: e2d4353a9293c5f4eb9aa10fec15d6a2
-    m_Address: SkillIcon
+  - m_GUID: 1be6062d03500fb4aaf50519ffa971ea
+    m_Address: S1000008
     m_ReadOnly: 0
     m_SerializedLabels:
     - SkillIcon
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9c542e056cecebf408d2beda698b0d27
+    m_Address: S1000009
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - SkillIcon
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a0095c78781cf744da8d6e7987c5bea3
+    m_Address: S210005
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - SkillIcon
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a9f5661f9e0134d4ca031ea08d6726b5
+    m_Address: S1000010
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - SkillIcon
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ac1b9e8864524764699d724858aa9b07
+    m_Address: S210003
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - SkillIcon
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b24cdc4fdbb628c4eaa9f8c075302e1a
+    m_Address: S210001
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - SkillIcon
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c4fa47c3431b33c4e93d272c0ac91b24
+    m_Address: S210004
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - SkillIcon
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c6fcd9ee43fedbe4db35414103e680f8
+    m_Address: S100001
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - SkillIcon
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e32bad9e00c32a04187ac93dbedb6a90
+    m_Address: S100002
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - SkillIcon
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: fb8ec86848f8efc4691ab07ad8efd74e
+    m_Address: S210002
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - SkillIcon
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 5cf4464ca5b325f4bb8b3da7669b3ecd, type: 2}
   m_SchemaSet:

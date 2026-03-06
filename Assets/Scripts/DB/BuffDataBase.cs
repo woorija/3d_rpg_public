@@ -22,7 +22,7 @@ public class ItemBuffData : BuffData
     public float coolTime { get; private set; }
     public float interval { get; private set; }
     public float duration { get; private set; }
-    public List<int> buffTypes { get; private set; }
+    public List<int> buffTypes { get; private set; } //enum BuffType 참조
     public List<int> buffOptions { get; private set; }
     public ItemBuffData(int _id, int _buffKey, float _coolTime, float _duration, float _interval, List<int> _buffTypes, List<int> _buffOptions) : base(_id, _buffKey)
     {

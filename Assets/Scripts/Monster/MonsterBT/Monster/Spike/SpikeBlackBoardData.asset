@@ -9,14 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f29c7b979fb419e479f31ffa570d598c, type: 3}
+  m_Script: {fileID: 11500000, guid: 461d5449e14096a44a02f1c29009b5fb, type: 3}
   m_Name: SpikeBlackBoardData
   m_EditorClassIdentifier: 
   id: 10002
-  level: 3
-  maxHp: 80
+  level: 10
+  maxHp: 500
   trackingRange: 7
-  normalAttackRange: 1.5
   limitTrackingRange: 225
   limitTrackingHeight: 3
   minIdleTime: 1
@@ -24,15 +23,10 @@ MonoBehaviour:
   idleMoveSpeed: 1.2
   trackingMoveSpeed: 2
   returnMoveSpeed: 9
-  attackCooltime: 3
-  attackRange: 1.5
-  attackDamage: 15
-  respawnTime: 10
-  dashskillCooltime: 0
-  dashskillRange: {x: 0, y: 0, z: 0}
-  dashskillDamage: 0
-  jumpSkillCooltime: 0
-  jumpSkillInnerRange: 0
-  jumpSkillOuterRange: 0
-  jumpSkillInnerDamage: 0
-  jumpSkillOuterDamage: 0
+  AttackDataList:
+  - {fileID: 11400000, guid: 24f1061939b62c14c9cf4b76f1d05c6c, type: 2}
+  - {fileID: 11400000, guid: 28aeb59af0d6fbb419222b468888626c, type: 2}
+  - {fileID: 11400000, guid: baeab940b3ee20a42b7455db97bb0736, type: 2}
+  - {fileID: 11400000, guid: c1b3ee8a847e4e04b96d9df6a6cbeaea, type: 2}
+  - {fileID: 11400000, guid: 6d5c6e479bb27844eb1df5f449adf457, type: 2}
+  respawnTime: 999999

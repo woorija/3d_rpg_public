@@ -9,14 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 35305b58d8d5aaf42bc84aa5859bc242, type: 3}
+  m_Script: {fileID: 11500000, guid: 461d5449e14096a44a02f1c29009b5fb, type: 3}
   m_Name: MushroomBlackBoardData
   m_EditorClassIdentifier: 
   id: 10001
-  level: 2
+  level: 5
   maxHp: 50
   trackingRange: 6
-  normalAttackRange: 1.5
   limitTrackingRange: 144
   limitTrackingHeight: 3
   minIdleTime: 2
@@ -24,15 +23,9 @@ MonoBehaviour:
   idleMoveSpeed: 1.2
   trackingMoveSpeed: 2
   returnMoveSpeed: 7
-  attackCooltime: 4
-  attackRange: 1.5
-  attackDamage: 10
-  respawnTime: 10
-  dashskillCooltime: 10
-  dashskillRange: {x: 0.8, y: 1, z: 1.5}
-  dashskillDamage: 25
-  jumpSkillCooltime: 15
-  jumpSkillInnerRange: 2.25
-  jumpSkillOuterRange: 9
-  jumpSkillInnerDamage: 40
-  jumpSkillOuterDamage: 15
+  AttackDataList:
+  - {fileID: 11400000, guid: 204751e97b6e85b408b8537fb4f403d9, type: 2}
+  - {fileID: 11400000, guid: 81451966cdbcaf84bb782fba8fa3ac78, type: 2}
+  - {fileID: 11400000, guid: b2d87a58ba9bc034a98e88df90c4f065, type: 2}
+  - {fileID: 11400000, guid: a64ae753e610a634f90a3da2c9ff2ca3, type: 2}
+  respawnTime: 12

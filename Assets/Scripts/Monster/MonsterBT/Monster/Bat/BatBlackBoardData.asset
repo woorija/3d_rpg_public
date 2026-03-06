@@ -16,7 +16,6 @@ MonoBehaviour:
   level: 1
   maxHp: 30
   trackingRange: 6
-  normalAttackRange: 1.5
   limitTrackingRange: 100
   limitTrackingHeight: 2
   minIdleTime: 2
@@ -24,7 +23,6 @@ MonoBehaviour:
   idleMoveSpeed: 1
   trackingMoveSpeed: 2
   returnMoveSpeed: 8
-  attackCooltime: 2
-  attackRange: 1.5
-  attackDamage: 5
-  respawnTime: 5
+  AttackDataList:
+  - {fileID: 11400000, guid: a9f12ca25b940f247993fb2cc7ff3635, type: 2}
+  respawnTime: 8

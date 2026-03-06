@@ -9,7 +9,7 @@ public class Player_Idle : Player_Base
     public override void StateUpdate()
     {
         base.StateUpdate();
-        if (controller.IsFall())
+        if (controller.IsFall(-2f))
         {
             FSM.ChangeState(StateType.Fall);
         }

@@ -158,6 +158,13 @@ public class QuickSlotData : SingletonBehaviour<QuickSlotData>
             slot.OnUseSkill += _function;
         }
     }
+    public void SkillRemovelistener(Action<int> _function)
+    {
+        foreach(QuickSlot slot in quickSlots)
+        {
+            slot.OnUseSkill -= _function;
+        }
+    }
     public int[] SaveQuickSlots()
     {
         return quickSlotIds;

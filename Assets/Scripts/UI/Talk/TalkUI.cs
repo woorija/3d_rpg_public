@@ -10,10 +10,8 @@ public class TalkUI : MonoBehaviour
     [SerializeField] TMP_Text talkText;
     
     bool isTyping = false;
-
-    [SerializeField] UnityEvent onTalkEnd;
-
     string talk = string.Empty;
+
     public bool GetObjectActiveSelf()
     {
         return UIObject.activeSelf;
@@ -44,7 +42,7 @@ public class TalkUI : MonoBehaviour
     void TypingComplete()
     {
         isTyping = false;
-        onTalkEnd.Invoke();
+        TalkManager.Instance.SetNextTalkId();
     }
     public bool IsTyping()
     {

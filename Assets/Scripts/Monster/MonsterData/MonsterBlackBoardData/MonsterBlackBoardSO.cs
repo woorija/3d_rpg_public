@@ -1,4 +1,4 @@
-using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "BaseMonsterBlackBoardData", menuName = "ScriptableObjects/BaseMonsterBlackBoardData")]
@@ -10,7 +10,6 @@ public class MonsterBlackBoardSO : ScriptableObject
     public int maxHp;
 
     public float trackingRange;
-    public float normalAttackRange;
 
     public float limitTrackingRange;
     public float limitTrackingHeight;
@@ -22,9 +21,7 @@ public class MonsterBlackBoardSO : ScriptableObject
     public float trackingMoveSpeed;
     public float returnMoveSpeed;
 
-    public float attackCooltime;
-    public float attackRange;
-    public int attackDamage;
+    public List<AttackDataSO> AttackDataList;
 
     public float respawnTime;
 

@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 285ae81aac0c1c54097e617317dd3b2a, type: 3}
+  m_Name: SpikeAttackData
+  m_EditorClassIdentifier: Assembly-CSharp::AttackDataSO
+  attackName: NormalAttack
+  attackType: 2
+  pos: {x: 0, y: 0, z: 0}
+  yLower: -1
+  yUpper: 4
+  outerRadius: 2
+  innerRadius: 0
+  angles: []
+  left: 1.6
+  right: 1.6
+  front: 4
+  back: 1
+  cooltime: 6
+  damage: 14
+  percentDamage: 0

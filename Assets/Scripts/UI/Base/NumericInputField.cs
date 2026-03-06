@@ -8,8 +8,8 @@ public class NumericInputField : MonoBehaviour
     private void Awake()
     {
         inputField = GetComponent<TMP_InputField>();
-        inputField.onSelect.AddListener(CustomInputManager.Instance.DisablePlayerActionMap);
-        inputField.onDeselect.AddListener(CustomInputManager.Instance.EnablePlayerActionMap);
+        inputField.onSelect.AddListener(_ => CustomInputManager.Instance.DisablePlayerActionMap());
+        inputField.onDeselect.AddListener(_ => CustomInputManager.Instance.EnablePlayerActionMap());
     }
     private void OnEnable()
     {
@@ -22,7 +22,7 @@ public class NumericInputField : MonoBehaviour
     }
     public int GetValue()
     {
-        return string.IsNullOrEmpty(inputField.text) ? 0 : int.Parse(inputField.text);
+        return int.TryParse(inputField.text, out int value) ? value : 0;
     }
     public void ResetValue()
     {
@@ -34,6 +34,9 @@ public class NumericInputField : MonoBehaviour
         inputField.Select();
         inputField.ActivateInputField();
         CustomInputManager.Instance.DisablePlayerActionMap();
-        GameManager.Instance.ChangeUIMode();
+        if (GameManager.Instance.gameMode == GameMode.GamePlay)
+        {
+            GameManager.Instance.ChangeUIMode();
+        }
     }
 }

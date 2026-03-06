@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class NpcData : MonoBehaviour
+public class NpcData : MonoBehaviour, ISpawnInitializeable
 {
     [field: SerializeField] public int npcId { get; private set; }
     [field: SerializeField] public int npcType { get; private set; }
@@ -14,7 +14,11 @@ public class NpcData : MonoBehaviour
     {
         teleportData = GetComponent<TeleportData>();
     }
-
+    public void OnSpawn(TransformData _data)
+    {
+        transform.SetPositionAndRotation(_data.position, Quaternion.Euler(_data.rotation));
+        transform.localScale = _data.scale;
+    }
 #if UNITY_EDITOR
     public void SetTalkSO(TalkDataSO _so)
     {

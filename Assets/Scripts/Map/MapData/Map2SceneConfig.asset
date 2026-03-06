@@ -1,0 +1,95 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5edccd129cdb03b4ba67c62a75c17eb1, type: 3}
+  m_Name: Map2SceneConfig
+  m_EditorClassIdentifier: Assembly-CSharp::MapSceneConfigSO
+  list:
+  - addressableKey: N2
+    transform:
+      position: {x: 51.3, y: 0.3, z: 31.2}
+      rotation: {x: 0, y: 225, z: 0}
+      scale: {x: 1, y: 1, z: 1}
+  - addressableKey: N3
+    transform:
+      position: {x: 44.28, y: 3.65, z: 68.7}
+      rotation: {x: 0, y: 135, z: 0}
+      scale: {x: 1, y: 1, z: 1}
+  - addressableKey: N4
+    transform:
+      position: {x: 58, y: 9.03, z: 78.8}
+      rotation: {x: 0, y: 215, z: 0}
+      scale: {x: 1, y: 1, z: 1}
+  - addressableKey: N5
+    transform:
+      position: {x: 80, y: 0, z: 55.9}
+      rotation: {x: 0, y: 215, z: 0}
+      scale: {x: 1, y: 1, z: 1}
+  - addressableKey: N6
+    transform:
+      position: {x: 38.8, y: 9.03, z: 78.8}
+      rotation: {x: 0, y: 135, z: 0}
+      scale: {x: 1, y: 1, z: 1}
+  - addressableKey: M10000
+    transform:
+      position: {x: 39.19, y: 0, z: 52.8}
+      rotation: {x: 0, y: 0, z: 0}
+      scale: {x: 1, y: 1, z: 1}
+  - addressableKey: M10000
+    transform:
+      position: {x: 57.4, y: 0, z: 52.6}
+      rotation: {x: 0, y: 0, z: 0}
+      scale: {x: 1, y: 1, z: 1}
+  - addressableKey: M10000
+    transform:
+      position: {x: 46.1, y: 0, z: 43}
+      rotation: {x: 0, y: 0, z: 0}
+      scale: {x: 1, y: 1, z: 1}
+  - addressableKey: M10000
+    transform:
+      position: {x: 52.2, y: 0, z: 54.6}
+      rotation: {x: 0, y: 0, z: 0}
+      scale: {x: 1, y: 1, z: 1}
+  - addressableKey: M10000
+    transform:
+      position: {x: 38, y: 0, z: 46.1}
+      rotation: {x: 0, y: 0, z: 0}
+      scale: {x: 1, y: 1, z: 1}
+  - addressableKey: M10000
+    transform:
+      position: {x: 44.3, y: 0, z: 50}
+      rotation: {x: 0, y: 0, z: 0}
+      scale: {x: 1, y: 1, z: 1}
+  - addressableKey: M10000
+    transform:
+      position: {x: 54.3, y: 0, z: 42.4}
+      rotation: {x: 0, y: 0, z: 0}
+      scale: {x: 1, y: 1, z: 1}
+  - addressableKey: M10000
+    transform:
+      position: {x: 53.8, y: 0, z: 47.2}
+      rotation: {x: 0, y: 0, z: 0}
+      scale: {x: 1, y: 1, z: 1}
+  - addressableKey: Region1_House
+    transform:
+      position: {x: 66.1, y: 10, z: 85}
+      rotation: {x: 0, y: 0, z: 0}
+      scale: {x: 1, y: 1, z: 1}
+  - addressableKey: Region1_House
+    transform:
+      position: {x: 30.5, y: 10, z: 85}
+      rotation: {x: 0, y: 0, z: 0}
+      scale: {x: 1, y: 1, z: 1}
+  - addressableKey: Region1_House
+    transform:
+      position: {x: 48, y: 10, z: 85}
+      rotation: {x: 0, y: 0, z: 0}
+      scale: {x: 1, y: 1, z: 1}

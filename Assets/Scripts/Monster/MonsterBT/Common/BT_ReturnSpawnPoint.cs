@@ -10,7 +10,7 @@ public class BT_ReturnSpawnPoint : BT_ActionNode
     {
         blackBoard.agent.speed = blackBoard.blackBoardData.returnMoveSpeed;
         blackBoard.agent.SetDestination(blackBoard.movePoint);
-        if (blackBoard.agent.remainingDistance <= blackBoard.agent.stoppingDistance)
+        if (blackBoard.IsStand())
         {
             blackBoard.ChangeReturn(false);
             return BTResult.Failure;

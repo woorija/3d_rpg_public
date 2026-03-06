@@ -8,7 +8,7 @@ public class BT_Idle : BT_ActionNode
     }
     public override BTResult Execute()
     {
-        if (blackBoard.currentIdleTime > 0)
+        if (blackBoard.currentIdleTime > 0 && blackBoard.IsStand())
         {
             return BTResult.Success;
         }

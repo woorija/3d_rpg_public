@@ -15,22 +15,26 @@ public static class ShopDataBase
     public static readonly Dictionary<int, List<ShopItemData>> ShopDB = new Dictionary<int, List<ShopItemData>>()
     {
         {
-            1, new List<ShopItemData>()
+            4, new List<ShopItemData>()
             {
-                new ShopItemData(112302004, 500),
-                new ShopItemData(110101002, 600),
-                new ShopItemData(200100001, 100),
-                new ShopItemData(300000002, 5),
+                new ShopItemData(200100001, 30),
+                new ShopItemData(200100002, 30),
+                new ShopItemData(200100003, 30),
+                new ShopItemData(200100004, 30),
+                new ShopItemData(200200001, 30),
+                new ShopItemData(200200002, 30),
             }
         },
         {
-            2, new List<ShopItemData>()
+            6, new List<ShopItemData>()
             {
-                new ShopItemData(121201003, 444),
-                new ShopItemData(112302004, 111),
-                new ShopItemData(200100002, 55),
-                new ShopItemData(300000003, 3),
-                new ShopItemData(300000004, 2),
+                new ShopItemData(100001001, 500),
+                new ShopItemData(100001002, 1000),
+                new ShopItemData(100002001, 500),
+                new ShopItemData(100003001, 500),
+                new ShopItemData(100004001, 500),
+                new ShopItemData(100005001, 500),
+                new ShopItemData(100006001, 500),
             }
         },
     };

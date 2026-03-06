@@ -1,80 +1,58 @@
-using UnityEngine;
-
 public class SpikeBlackBoard : BaseBlackBoard
 {
-    public float currentDashSkillCooltime { get; protected set; }
-    public float currentJumpSkillCooltime { get; protected set; }
+    AttackDataSO normalAttackData;
+    AttackDataSO dashSkillData;
+    AttackDataSO leftSmashData;
+    AttackDataSO rightSmashData;
+    AttackDataSO rageAttackData;
 
     protected override void Init()
     {
         base.Init();
-        currentDashSkillCooltime = 0;
-        currentJumpSkillCooltime = 0;
-    }
-    protected override void Update()
-    {
-        base.Update();
-        currentDashSkillCooltime -= Time.deltaTime;
-        currentJumpSkillCooltime -= Time.deltaTime;
+
+        normalAttackData = attackDataMap[MonsterActionKey.NormalAttack];
+        dashSkillData = attackDataMap[MonsterActionKey.DashSkill];
+        leftSmashData = attackDataMap[MonsterActionKey.LeftSmash];
+        rightSmashData = attackDataMap[MonsterActionKey.RightSmash];
+        rageAttackData = attackDataMap[MonsterActionKey.RageAttack];
+
+        RegisterSkill(MonsterActionKey.NormalAttack, normalAttackData.Cooltime);
+        RegisterSkill(MonsterActionKey.DashSkill, dashSkillData.Cooltime);
+        RegisterSkill(MonsterActionKey.LeftSmash, leftSmashData.Cooltime);
+        RegisterSkill(MonsterActionKey.RightSmash, rightSmashData.Cooltime);
+        RegisterSkill(MonsterActionKey.RageAttack, rageAttackData.Cooltime);
     }
     public override void GetHUD()
     {
         if (BossHUD.Instance.IsChangeHUD(blackBoardData.id))
         {
-            RemoveAllListener();
             BossHUD.Instance.SetHUD(blackBoardData.id, hp, blackBoardData.maxHp / 5);
-            AddHUDListener(BossHUD.Instance.ChangeHp);
+            OnHpChanged = BossHUD.Instance.ChangeHp;
         }
     }
     public override void ReleaseHUD()
     {
         BossHUD.Instance.ReleaseHUD();
-        RemoveAllListener();
+        OnHpChanged = null;
     }
     public override void NormalAttack()
     {
-        if (CustomUtility.IsInCircularSectorRange(transform.forward, transform.position, player.transform.position, blackBoardData.attackRange * blackBoardData.attackRange, 22.5f, 2f))
-        {
-            int damage = HitUtility.CalculateMonsterDamage(blackBoardData.attackDamage, player.finalStats[StatusType.PhysicalDefensePower]);
-            player.Hit(damage);
-            DamageManager.Instance.PopupPlayerDamage(damage, player.transform.position);
-        }
-    }
-    public void ResetDashSkillCooltime()
-    {
-        MushroomBlackBoardSO MushroomBlackBoardData = (MushroomBlackBoardSO)blackBoardData;
-        currentDashSkillCooltime = MushroomBlackBoardData.dashskillCooltime;
-    }
-    public void ResetJumpSkillCooltime()
-    {
-        MushroomBlackBoardSO MushroomBlackBoardData = (MushroomBlackBoardSO)blackBoardData;
-        currentJumpSkillCooltime = MushroomBlackBoardData.jumpSkillCooltime;
+        ExecuteAttack(normalAttackData);
     }
     public void DashSkillAttack()
     {
-        MushroomBlackBoardSO MushroomBlackBoardData = (MushroomBlackBoardSO)blackBoardData;
-        if (HitUtility.IsInBoxRangeToPlayer(transform.position + (transform.forward * MushroomBlackBoardData.dashskillRange.z), MushroomBlackBoardData.dashskillRange, transform.localRotation))
-        {
-            int damage = HitUtility.CalculateMonsterDamage(MushroomBlackBoardData.dashskillDamage, player.finalStats[StatusType.PhysicalDefensePower]);
-            player.Hit(damage);
-            DamageManager.Instance.PopupPlayerDamage(damage, player.transform.position);
-        }
-
+        ExecuteAttack(dashSkillData);
     }
-    public void JumpSkillAttack()
+    public void LeftSmashAttack()
     {
-        MushroomBlackBoardSO MushroomBlackBoardData = (MushroomBlackBoardSO)blackBoardData;
-        if (CheckDistance(MushroomBlackBoardData.jumpSkillInnerRange))
-        {
-            int damage = HitUtility.CalculateMonsterDamage(MushroomBlackBoardData.jumpSkillInnerDamage, player.finalStats[StatusType.PhysicalDefensePower]);
-            player.Hit(damage);
-            DamageManager.Instance.PopupPlayerDamage(damage, player.transform.position);
-        }
-        else if (CheckDistance(MushroomBlackBoardData.jumpSkillOuterRange))
-        {
-            int damage = HitUtility.CalculateMonsterDamage(MushroomBlackBoardData.jumpSkillOuterDamage, player.finalStats[StatusType.PhysicalDefensePower]);
-            player.Hit(damage);
-            DamageManager.Instance.PopupPlayerDamage(damage, player.transform.position);
-        }
+        ExecuteAttack(leftSmashData);
+    }
+    public void RightSmashAttack()
+    {
+        ExecuteAttack(rightSmashData);
+    }
+    public void RageSkillAttack()
+    {
+        ExecuteAttack(rageAttackData);
     }
 }

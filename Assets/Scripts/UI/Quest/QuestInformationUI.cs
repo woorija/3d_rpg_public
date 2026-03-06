@@ -44,10 +44,10 @@ public class QuestInformationUI : MonoBehaviour
             {
                 case 1:
                     int count = QuestManager.Instance.talkDatas[_index][ids[i]] ? 1 : 0;
-                    stringBuilder.Append($"{NPCDataBase.NPCDB[ids[i]].name}와(과) 대화하기\n {count} / 1\n");
+                    stringBuilder.Append($"{NPCDataBase.NPCDB[ids[i]].name}와(과) 대화하기 {count} / 1\n");
                     break;
                 case 5:
-                    stringBuilder.Append($"{MonsterNameDataBase.monsterNameDB[ids[i]]} 사냥하기 {QuestManager.Instance.huntDatas[_index][ids[i]]}/{counts[i]}");
+                    stringBuilder.Append($"{MonsterNameDataBase.monsterNameDB[ids[i]]} 사냥하기 {QuestManager.Instance.huntDatas[_index][ids[i]]}/{counts[i]}\n");
                     break;
                 case 9:
                     stringBuilder.Append($"{ItemDataBase.GetItemName(ids[i])}  {InventoryData.Instance.GetItemCount(ids[i])}/{counts[i]}\n");

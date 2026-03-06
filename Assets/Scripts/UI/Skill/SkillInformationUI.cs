@@ -81,7 +81,7 @@ public class SkillInformationUI : MonoBehaviour
     void SetNameAndImage()
     {
         if (skillId == 0) return;
-        AddressableManager.Instance.LoadAsset<Sprite>($"SkillIcon/S{skillId}.png", SetSprite);
+        AddressableManager.Instance.LoadAsset<Sprite>($"S{skillId}", SetSprite);
         skillName.text = SkillDataBase.InfoDB[skillId].skillName;
     }
     void SetSprite(Sprite _sprite)

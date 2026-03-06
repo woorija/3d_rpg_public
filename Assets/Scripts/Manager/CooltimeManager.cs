@@ -1,24 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public struct CooltimeData
-{
-    public float currentCooltime;
-    public float cooltime;
-    public CooltimeData(float _cooltime)
-    {
-        cooltime = _cooltime;
-        currentCooltime = _cooltime;
-    }
-    public void Update(float _time)
-    {
-        currentCooltime -= _time;
-    }
-    public bool IsNotCooltime()
-    {
-        return currentCooltime <= 0;
-    }
-}
 public class CooltimeManager : SingletonBehaviour<CooltimeManager>
 {
     private Dictionary<int, CooltimeData> cooltimeDatas = new Dictionary<int, CooltimeData>(32);

@@ -1,4 +1,4 @@
-public class BT_CheckReturn : BT_ActionNode
+public class BT_CheckReturn : BT_ConditionNode
 {
     protected BaseBlackBoard blackBoard;
     protected override void Awake()
@@ -8,14 +8,15 @@ public class BT_CheckReturn : BT_ActionNode
     }
     public override BTResult Execute()
     {
-        if (blackBoard.isReturn)
+        if (CheckCondition())
         {
             blackBoard.ReleaseHUD();
             return BTResult.Success;
         }
-        else
-        {
-            return BTResult.Failure;
-        }
+        return BTResult.Failure;
+    }
+    protected override bool CheckCondition()
+    {
+        return blackBoard.isReturn;
     }
 }

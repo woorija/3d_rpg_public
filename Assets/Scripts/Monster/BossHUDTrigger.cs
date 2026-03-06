@@ -5,7 +5,7 @@ public class BossHUDTrigger : MonoBehaviour
     [SerializeField] BaseBlackBoard blackBoard;
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.gameObject.layer == Layers.Player)
         {
             if(CustomUtility.CheckHeightDifference(other.gameObject.transform.position.y, transform.position.y, 10f))
             {
@@ -15,7 +15,7 @@ public class BossHUDTrigger : MonoBehaviour
     }
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.gameObject.layer == Layers.Player)
         {
             blackBoard.ReleaseHUD();
         }

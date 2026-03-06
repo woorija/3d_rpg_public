@@ -27,6 +27,18 @@ MonoBehaviour:
     m_SerializedLabels:
     - PlayerEffect
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1edb1209a590eb6498a651b5983dfbb6
+    m_Address: S210001-2
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - PlayerEffect
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 264d0d0d307226a4e948976fc030dec5
+    m_Address: S210001-1
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - PlayerEffect
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 2b4be41cc1154864c80c576f356b237b
     m_Address: S23-1
     m_ReadOnly: 0

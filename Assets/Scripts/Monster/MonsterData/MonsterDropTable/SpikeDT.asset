@@ -12,15 +12,60 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd1e0613fa83ae84c9cf2137fda884e6, type: 3}
   m_Name: SpikeDT
   m_EditorClassIdentifier: 
-  exp: 7
-  minGold: 7
-  maxGold: 14
+  id: 10002
+  exp: 100
+  minGold: 200
+  maxGold: 500
   dropTables:
+  - itemNumber: 100001004
+    minAmount: 1
+    maxAmount: 1
+    probability: 50
+  - itemNumber: 200100001
+    minAmount: 20
+    maxAmount: 50
+    probability: 100
+  - itemNumber: 200100002
+    minAmount: 20
+    maxAmount: 50
+    probability: 100
   - itemNumber: 200100003
-    minAmount: 2
-    maxAmount: 7
-    probability: 10
+    minAmount: 20
+    maxAmount: 50
+    probability: 100
   - itemNumber: 200100004
     minAmount: 3
     maxAmount: 10
     probability: 30
+  - itemNumber: 200100004
+    minAmount: 20
+    maxAmount: 50
+    probability: 100
+  - itemNumber: 200200001
+    minAmount: 20
+    maxAmount: 50
+    probability: 100
+  - itemNumber: 200200002
+    minAmount: 20
+    maxAmount: 50
+    probability: 100
+  - itemNumber: 300000001
+    minAmount: 10
+    maxAmount: 30
+    probability: 100
+  - itemNumber: 300000002
+    minAmount: 10
+    maxAmount: 30
+    probability: 100
+  - itemNumber: 300000003
+    minAmount: 10
+    maxAmount: 30
+    probability: 100
+  - itemNumber: 300000004
+    minAmount: 10
+    maxAmount: 30
+    probability: 100
+  - itemNumber: 300000010
+    minAmount: 1
+    maxAmount: 1
+    probability: 100

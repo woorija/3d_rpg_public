@@ -11,7 +11,7 @@ public class CraftItemInformation : MonoBehaviour
     public void SetData(CraftItemData _data)
     {
         itemData = _data;
-        AddressableManager.Instance.LoadAsset<Sprite>($"ItemIcon/I{itemData.itemId}.png", SetIconSprite);
+        AddressableManager.Instance.LoadAsset<Sprite>($"I{itemData.itemId}", SetIconSprite);
     }
     void SetIconSprite(Sprite _sprite)
     {
@@ -32,7 +32,7 @@ public class CraftItemInformation : MonoBehaviour
     }
     public void SetNull()
     {
-        AddressableManager.Instance.LoadAsset<Sprite>($"ItemIcon/ClearImage.png", SetIconSprite);
+        AddressableManager.Instance.LoadAsset<Sprite>("ClearImage", SetIconSprite);
         itemNameText.text = null;
         itemCountText.text = null;
     }

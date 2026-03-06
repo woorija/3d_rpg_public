@@ -41,9 +41,14 @@ public class PlayerEffectManager : MonoBehaviour
     }
     public async void SetEffect(PlayerEffectKey _key, Vector3 _pos, Quaternion _rotate)
     {
-        var effectObj = await AddressableManager.Instance.InstantiateAsync($"S{_key.id}-{_key.index}");
+        var effectObj = await AddressableManager.Instance.InstantiateGlobalAsync($"S{_key.id}-{_key.index}");
+
+        if (effectObj == null)
+        {
+            DevelopUtility.Log($"obj is null : Effect{_key.id}-{_key.index}");
+            return;
+        }
         
-        if (effectObj == null) return;
         PlayerEffect effect = effectObj.GetComponent<PlayerEffect>();
         effect.transform.parent = transform;
         effect.transform.localPosition = _pos;
@@ -84,6 +89,10 @@ public class PlayerEffectManager : MonoBehaviour
                 SetEffect(100002, 1, new Vector3(0f, 0.8f, 0f), Quaternion.Euler(new Vector3(-95f, -110f, 0f)));
                 break;
             case 21:
+                SetEffect(210001, 1, new Vector3(0f, 0.8f, 0f), Quaternion.Euler(new Vector3(0f, -110f, 0f)));
+                SetEffect(210001, 2, new Vector3(0f, 0f, 0f), Quaternion.Euler(new Vector3(-95f, -110f, 0f)));
+                SetEffect(210003, 1, new Vector3(0f, 0.8f, 0f), Quaternion.Euler(new Vector3(-95f, -110f, 0f)));
+                SetEffect(210003, 2, new Vector3(0f, 0.8f, 0f), Quaternion.Euler(new Vector3(-95f, -110f, 0f)));
                 break;
             case 22:
                 break;

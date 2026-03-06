@@ -10,4 +10,8 @@ public abstract class BT_Node : MonoBehaviour
     {
         BT = GetComponentInParent<BehaviorTree>();
     }
+    public virtual void ResetNode()
+    {
+
+    }
 }

@@ -21,10 +21,10 @@ public class BuffIcon : PoolBehaviour<BuffIcon>, IPointerEnterHandler, IPointerE
         switch (CustomUtility.GetDigitCount(_id))
         {
             case 6:
-                AddressableManager.Instance.LoadAsset<Sprite>($"SkillIcon/S{_id}.png", SetIconSprite);
+                AddressableManager.Instance.LoadAsset<Sprite>($"S{_id}", SetIconSprite);
                 break;
             case 9:
-                AddressableManager.Instance.LoadAsset<Sprite>($"ItemIcon/I{_id}.png", SetIconSprite);
+                AddressableManager.Instance.LoadAsset<Sprite>($"I{_id}", SetIconSprite);
                 break;
         }
     }

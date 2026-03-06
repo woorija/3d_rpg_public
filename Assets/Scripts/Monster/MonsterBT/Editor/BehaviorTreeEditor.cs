@@ -14,7 +14,6 @@ public class BehaviorTreeEditor : Editor
         Selector = 1,
         RandomSelector,
         Sequence,
-        If,
         BaseLogic
     }
     public override void OnInspectorGUI()
@@ -30,7 +29,6 @@ public class BehaviorTreeEditor : Editor
             CustomEditorDrawer.DrawButtonStyleToggle("Selector", null, (int)NodeList.Selector, ref selectedIndex);
             CustomEditorDrawer.DrawButtonStyleToggle("RandomSelector", null, (int)NodeList.RandomSelector, ref selectedIndex);
             CustomEditorDrawer.DrawButtonStyleToggle("Sequence", null, (int)NodeList.Sequence, ref selectedIndex);
-            CustomEditorDrawer.DrawButtonStyleToggle("If", null, (int)NodeList.If, ref selectedIndex);
             EditorGUILayout.EndHorizontal();
 
             CustomEditorDrawer.DrawButton("Apply Selection", () => ApplySelection());
@@ -76,9 +74,6 @@ public class BehaviorTreeEditor : Editor
                 CreateNode<BT_SequenceNode>(BT, "RootNode (Sequence)");
                 break;
             case 4:
-                CreateNode<BT_IfNode>(BT, "RootNode (If)");
-                break;
-            case 5:
                 CreateMainLogicPreset();
                 break;
             default:
@@ -104,8 +99,8 @@ public class BehaviorTreeEditor : Editor
     {
         BehaviorTree BT = (BehaviorTree)target;
 
-        BT_IfNode preset = AssetDatabase.LoadAssetAtPath<BT_IfNode>("Assets/Prefabs/MonsterBT/RootNode (If).prefab");
-        BT_IfNode instance = (BT_IfNode)PrefabUtility.InstantiatePrefab(preset, BT.transform);
+        BT_SelectorNode preset = AssetDatabase.LoadAssetAtPath<BT_SelectorNode>("Assets/Prefabs/MonsterBT/Selector(Root).prefab");
+        BT_SelectorNode instance = (BT_SelectorNode)PrefabUtility.InstantiatePrefab(preset, BT.transform);
         instance.transform.SetParent(BT.transform);
         BT.GetRootNode(instance);
     }

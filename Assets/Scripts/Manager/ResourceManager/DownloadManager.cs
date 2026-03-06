@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using UnityEngine.AddressableAssets;
+using UnityEngine.ResourceManagement.AsyncOperations;
 
 public class DownloadManager : MonoBehaviour
 {
@@ -11,8 +12,14 @@ public class DownloadManager : MonoBehaviour
     [SerializeField] GameObject startButton;
 
     long patchSize;
-    Dictionary<string,long> patchDictionary = new Dictionary<string,long>();
-    
+    List<object> labelKeys = new List<object>();
+    private void Awake()
+    {
+        foreach (string key in Labels)
+        {
+            labelKeys.Add(key);
+        }
+    }
     async void Start()
     {
         startButton.SetActive(false);
@@ -24,28 +31,31 @@ public class DownloadManager : MonoBehaviour
     {
         DevelopUtility.Log("Init");
         await Addressables.InitializeAsync();
+        await UpdateCatalogs();
         startButton.SetActive(true);
-        DevelopUtility.Log("Init comp");
+        DevelopUtility.Log("Init complete");
+    }
+    async UniTask UpdateCatalogs()
+    {
+        var catalogCheck = await Addressables.CheckForCatalogUpdates();
+        if (catalogCheck.Count > 0)
+        {
+            DevelopUtility.Log($"카탈로그 업데이트");
+            await Addressables.UpdateCatalogs(catalogCheck);
+        }
     }
     public void GameStart()
     {
-        GetCheckDownloadSize();
+        CheckDownloadSize().Forget();
     }
-    async void GetCheckDownloadSize()
+    async UniTask CheckDownloadSize()
     {
-        patchSize = 0;
+        var handle = Addressables.GetDownloadSizeAsync(labelKeys);
+        await handle;
+        patchSize = handle.Result;
+        Addressables.Release(handle);
 
-        foreach(var label in Labels)
-        {
-            DevelopUtility.Log(label);
-            var handle = Addressables.GetDownloadSizeAsync(label);
-            await handle;
-            patchSize += handle.Result;
-            Addressables.Release(handle);
-            DevelopUtility.Log(patchSize.ToString());
-        }
-
-        if(patchSize > decimal.Zero)
+        if (patchSize > decimal.Zero)
         {
             checkUI.Open();
             checkUI.SetSizeText(patchSize);
@@ -60,66 +70,41 @@ public class DownloadManager : MonoBehaviour
     {
         checkUI.Close();
         downloadUI.Open();
-        PatchFiles();
+        PatchFiles().Forget();
     }
-    async void PatchFiles()
-    {
-        foreach (var label in Labels)
-        {
-            var handle = Addressables.GetDownloadSizeAsync(label);
-            await handle;
-
-            if (handle.Result > 0)
-            {
-                DownLoadLabel(label);
-            }
-            Addressables.Release(handle);
-        }
-        CheckDownLoad();
-    }
-    async void DownLoadLabel(string _label)
-    {
-        patchDictionary.Add(_label, 0);
-
-        var handle = Addressables.DownloadDependenciesAsync(_label);
-
-        while(!handle.IsDone)
-        {
-            patchDictionary[_label] = handle.GetDownloadStatus().DownloadedBytes;
-            await UniTask.Yield();
-        }
-
-        patchDictionary[_label] = handle.GetDownloadStatus().TotalBytes;
-        Addressables.Release(handle);
-    }
-    async void CheckDownLoad()
+    async UniTask PatchFiles()
     {
         downloadUI.SetPercentageText(0);
         downloadUI.SetTotalSize(patchSize);
 
-        while (true)
-        {
-            float total = 0f;
-            foreach (var value in patchDictionary.Values)
-            {
-                total += value;
-            }
+        var handle = Addressables.DownloadDependenciesAsync(labelKeys, Addressables.MergeMode.Union);
 
-            float percentage = total / patchSize;
+        while (!handle.IsDone)
+        {
+            var status = handle.GetDownloadStatus();
+
+            float percentage = status.TotalBytes > 0 ? (float)status.DownloadedBytes / status.TotalBytes : 0;
+
             downloadUI.SetSlider(percentage);
             downloadUI.SetPercentageText((int)(percentage * 100));
-            downloadUI.SetSizeInfoText(total);
+            downloadUI.SetSizeInfoText(status.DownloadedBytes);
 
-            if(total == patchSize)
-            {
-                break;
-            }
             await UniTask.Delay(100);
         }
-        downloadUI.SetPercentageText(100);
-        downloadUI.SetSlider(1);
-        //패치완료
-        CustomSceneManager.Instance.LoadManagerScene().Forget();
+
+        if(handle.Status == AsyncOperationStatus.Succeeded)
+        {
+            downloadUI.SetPercentageText(100);
+            downloadUI.SetSlider(1);
+            DevelopUtility.Log("패치완료");
+            Addressables.Release(handle);
+            CustomSceneManager.Instance.LoadManagerScene().Forget();
+        }
+        else
+        {
+            DevelopUtility.Log("다운로드실패");
+            Addressables.Release(handle);
+        }
     }
     public static string SetFileSizeText(long _size)
     {

@@ -36,7 +36,8 @@ AnimatorState:
   m_Speed: 0.7
   m_CycleOffset: 0
   m_Transitions: []
-  m_StateMachineBehaviours: []
+  m_StateMachineBehaviours:
+  - {fileID: -105187636904584756}
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1
@@ -45,7 +46,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 1f2605a0b91b470429881972e0033f46, type: 2}
+  m_Motion: {fileID: 7400000, guid: 3f99ba3a644335f4798161c436eaf89d, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -71,7 +72,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 1f2605a0b91b470429881972e0033f46, type: 2}
+  m_Motion: {fileID: 7400000, guid: 8a79f6b1289839c4b900af2dfe6d549c, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -97,7 +98,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: c2152e8f783361d44bd70098fc67432d, type: 2}
+  m_Motion: {fileID: 7400000, guid: 92d9c735e44b8b9478a0f51162eeab6d, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -123,12 +124,24 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 2ee28b6ce2eaaea4ea2b54ad04019fcb, type: 2}
+  m_Motion: {fileID: 7400000, guid: ac211a780f2c46d45a00135aecb75a00, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
+--- !u!114 &-105187636904584756
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7dac8a2b6f8c9264b9f4135aef3b5716, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StartDash
 --- !u!91 &9100000
 AnimatorController:
   m_ObjectHideFlags: 0
@@ -171,7 +184,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: fa0aecd15d967974bba4940bf3284dd6, type: 2}
+  m_Motion: {fileID: 7400000, guid: f1a1f0ab3d3919d49aeed7c271e7f95b, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -197,7 +210,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 42340b064b82803449f426fb41683098, type: 2}
+  m_Motion: {fileID: 7400000, guid: 486783fd6f8d42a4390f799c4f16f19e, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -288,7 +301,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: b313f179489a63348929b8e6eab4c06e, type: 2}
+  m_Motion: {fileID: 7400000, guid: 7e2485d14a00dcb4084a870cfb1759f4, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 

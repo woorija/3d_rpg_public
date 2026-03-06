@@ -3,22 +3,6 @@ using System.IO;
 using System.Text;
 using UnityEngine;
 
-public struct ItemSlotData
-{
-    public int equipmentSlotId;
-    public int useableSlotId;
-    public int useableSlotAmount;
-    public int miscSlotId;
-    public int miscSlotAmount;
-    public ItemSlotData(int _equipmentSlotId, int _useableSlotId, int _useableSlotAmount, int _miscSlotId, int _miscSlotAmount)
-    {
-        equipmentSlotId = _equipmentSlotId;
-        useableSlotId = _useableSlotId;
-        useableSlotAmount = _useableSlotAmount;
-        miscSlotId = _miscSlotId;
-        miscSlotAmount = _miscSlotAmount;
-    }
-}
 public class SaveDataWorld : BaseSaveData
 {
     PlayerStatus status;
@@ -33,7 +17,7 @@ public class SaveDataWorld : BaseSaveData
 
         BinaryUtility.SaveData(writer, dataVersion);
         BinaryUtility.SaveData(writer, CustomSceneManager.Instance.currentMapName);
-        BinaryUtility.SaveData(writer, status.transform.position);
+        BinaryUtility.SaveData(writer, status.transform.position + Vector3.up * 1.5f);
         Padding();
 
         base.SaveData();
@@ -380,7 +364,6 @@ public class DataManager : SingletonBehaviour<DataManager>
     [SerializeField] QuickSlotData quickSlotData;
     [SerializeField] SkillData skillData;
     [SerializeField] QuestManager questManager;
-    [SerializeField] SoundManager soundManager;
 
     [SerializeField] PlayerStatus playerStatus;
     [SerializeField] ResolutionManager resolutionManager;
@@ -592,7 +575,7 @@ public class DataManager : SingletonBehaviour<DataManager>
             settingDataSO.Init();
         }
         resolutionManager.LoadSetting(settingDataSO);
-        soundManager.LoadSetting(settingDataSO);
+        SoundManager.Instance.LoadSetting(settingDataSO);
         GraphicsManager.Instance.LoadSetting(settingDataSO);
         UIManager.Instance.SettingUIClose();
     }

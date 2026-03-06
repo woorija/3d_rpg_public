@@ -1,0 +1,65 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: NPCGroup
+  m_EditorClassIdentifier: Unity.Addressables.Editor::UnityEditor.AddressableAssets.Settings.AddressableAssetGroup
+  m_GroupName: NPCGroup
+  m_GUID: 70a1925f12767964cb1533490d678acf
+  m_SerializeEntries:
+  - m_GUID: 464451eada7b65a4685c0a574339200d
+    m_Address: N2
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - NPC
+    - Region1
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a0fae15578f7a974eba09c7471b2e86c
+    m_Address: N5
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - NPC
+    - Region1
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a9fd52e3d202ff747887a3b3b2d9cb89
+    m_Address: N3
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - NPC
+    - Region1
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e59458b9d24e57240a78facbf267881c
+    m_Address: N6
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - NPC
+    - Region1
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ea9dceae1cb1deb448a33e6af0e536ce
+    m_Address: N4
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - NPC
+    - Region1
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f299d04ced52a604484d4395c8ec393e
+    m_Address: N1
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - NPC
+    - Region1
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 5cf4464ca5b325f4bb8b3da7669b3ecd, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: cb88811f463200e40bf8e5f65f34a5d3, type: 2}
+    - {fileID: 11400000, guid: 1e1698aad0d72354984c7920e65a3958, type: 2}

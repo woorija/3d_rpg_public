@@ -6,10 +6,24 @@ public class StateMachine : MonoBehaviour
     [SerializeField] BaseState currentState;
     Dictionary<StateType, BaseState> States;
     public StateType currentStateType { get; private set; }
+    StateType pendingState;
+    bool hasPending;
 
     private void Awake()
     {
         States = new Dictionary<StateType, BaseState>();
+        pendingState = StateType.Idle;
+        hasPending = false;
+    }
+    private void Update()
+    {
+        if (!hasPending) return;
+
+        hasPending = false;
+        currentState.StateExit();
+        currentState = States[pendingState];
+        currentStateType = pendingState;
+        currentState.StateEnter();
     }
     public void Init(StateType _type)
     {
@@ -23,15 +37,22 @@ public class StateMachine : MonoBehaviour
     {
         if (States.ContainsKey(_newState) && currentStateType != _newState)
         {
-            currentState.StateExit();
-            currentState = States[_newState];
-            currentStateType = _newState;
-            currentState.StateEnter();
+            if (!hasPending)
+            {
+                pendingState = _newState;
+                hasPending = true;
+                return;
+            }
+
+            if (States[_newState].priority > States[pendingState].priority)
+            {
+                pendingState = _newState;
+            }
         }
     }
     public bool CanChangeState(StateType _newState)
     {
-        if (GameManager.Instance.gameMode != GameMode.ControllMode) return false;
+        if (GameManager.Instance.gameMode != GameMode.GamePlay) return false;
         if (currentState.priority > States[_newState].priority) return false;
         if (currentStateType == _newState) return false;
         return true;

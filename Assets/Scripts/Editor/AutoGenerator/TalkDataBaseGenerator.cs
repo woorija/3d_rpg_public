@@ -105,10 +105,6 @@ public class TalkDataBaseGenerator : ICsvToCodeGenerator
         GenerateClassCode();
 
         AssetDatabase.Refresh();
-        EditorApplication.delayCall += () =>
-        {
-            DevelopUtility.Log("TalkDB.cs 생성 완료");
-        };
     }
 }
 

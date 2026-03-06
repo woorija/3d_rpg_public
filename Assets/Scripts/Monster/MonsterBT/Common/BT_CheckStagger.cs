@@ -1,4 +1,4 @@
-public class BT_CheckStagger : BT_ActionNode
+public class BT_CheckStagger : BT_ConditionNode
 {
     protected BaseBlackBoard blackBoard;
     protected override void Awake()
@@ -8,7 +8,7 @@ public class BT_CheckStagger : BT_ActionNode
     }
     public override BTResult Execute()
     {
-        if (blackBoard.staggerTime > 0)
+        if (CheckCondition())
         {
             if (BT.IsCurrentAnimatorStateName(AnimationKey.Stagger))
             {
@@ -17,5 +17,9 @@ public class BT_CheckStagger : BT_ActionNode
             return BTResult.Success;
         }
         return BTResult.Failure;
+    }
+    protected override bool CheckCondition()
+    {
+        return blackBoard.staggerTime > 0;
     }
 }

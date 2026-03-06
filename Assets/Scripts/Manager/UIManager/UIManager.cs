@@ -23,11 +23,17 @@ public class UIManager : SingletonBehaviour<UIManager>, IInputBindable
     {
         base.Awake();
         closeList = new List<ICloseable>();
+        CustomSceneManager.Instance.onUICloseHandler += CloseAllUI;
     }
     private void Start()
     {
         settingUI.StartClose();
         InputInit();
+    }
+    private void OnDisable()
+    {
+        UnbindAllInputActions();
+        CustomSceneManager.Instance.onUICloseHandler -= CloseAllUI;
     }
     private void InputInit()
     {
@@ -52,6 +58,7 @@ public class UIManager : SingletonBehaviour<UIManager>, IInputBindable
         {
             closeList.Remove(_ui);
             _ui.Close();
+            CheckUIEmptyAndNotify();
         }
     }
     public void CloseLastUI(InputAction.CallbackContext context)
@@ -62,9 +69,11 @@ public class UIManager : SingletonBehaviour<UIManager>, IInputBindable
             ICloseable ui = closeList[lastIndex];
             closeList.RemoveAt(lastIndex);
             ui.Close();
+            CheckUIEmptyAndNotify();
         }
         else
         {
+            if (TalkManager.Instance.isTalking) return;
             settingUI.OpenUI();
         }
     }
@@ -75,6 +84,13 @@ public class UIManager : SingletonBehaviour<UIManager>, IInputBindable
             closeList[i].Close();
         }
         closeList.Clear();
+        CheckUIEmptyAndNotify();
+    }
+    void CheckUIEmptyAndNotify()
+    {
+        if (closeList.Count > 0) return;
+        if (TalkManager.Instance.isTalking) return;
+        GameManager.Instance.GameModeChange(GameMode.GamePlay);
     }
     public void AllUISortReset()
     {

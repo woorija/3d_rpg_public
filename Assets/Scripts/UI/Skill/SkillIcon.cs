@@ -10,7 +10,7 @@ public class SkillIcon : MonoBehaviour, IPointerEnterHandler, IPointerClickHandl
     int skillId;
     public void SetIcon(int _id)
     {
-        AddressableManager.Instance.LoadAsset<Sprite>($"SkillIcon/S{_id}.png", SetIconSprite);
+        AddressableManager.Instance.LoadAsset<Sprite>($"S{_id}", SetIconSprite);
         skillId = _id;
     }
     void SetIconSprite(Sprite _sprite)

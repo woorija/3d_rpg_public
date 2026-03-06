@@ -1,4 +1,4 @@
-public class BT_CheckDie : BT_ActionNode
+public class BT_CheckDie : BT_ConditionNode
 {
     protected BaseBlackBoard blackBoard;
     protected override void Awake()
@@ -6,16 +6,8 @@ public class BT_CheckDie : BT_ActionNode
         base.Awake();
         blackBoard = BT.GetBlackBoard();
     }
-    public override BTResult Execute()
+    protected override bool CheckCondition()
     {
-        if (blackBoard.isDie)
-        {
-            BT.PlayAnimation();
-            blackBoard.DropItem();
-            blackBoard.ReleaseHUD();
-            blackBoard.ResetRespawnTime();
-            return BTResult.Success;
-        }
-        return BTResult.Failure;
+        return blackBoard.isDie;
     }
 }

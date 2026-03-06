@@ -74,7 +74,7 @@ public class DropTableSOEditor : Editor
                 dropTables.Add(dropTable);
             }
         }
-        _data.dropTables = dropTables.ToArray();
+        _data.dropTables = dropTables;
     }
 }
 #endif

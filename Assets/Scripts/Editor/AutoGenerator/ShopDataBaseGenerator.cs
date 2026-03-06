@@ -103,10 +103,6 @@ public class ShopDataBaseGenerator : ICsvToCodeGenerator
         GenerateClassCode();
 
         AssetDatabase.Refresh();
-        EditorApplication.delayCall += () =>
-        {
-            DevelopUtility.Log("ShopDB.cs 생성 완료");
-        };
     }
 }
 

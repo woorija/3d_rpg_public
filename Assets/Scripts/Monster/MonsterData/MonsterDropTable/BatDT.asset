@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd1e0613fa83ae84c9cf2137fda884e6, type: 3}
   m_Name: BatDT
   m_EditorClassIdentifier: 
+  id: 10000
   exp: 3
   minGold: 3
   maxGold: 6
@@ -25,10 +26,18 @@ MonoBehaviour:
     maxAmount: 5
     probability: 60
   - itemNumber: 300000001
-    minAmount: 3
-    maxAmount: 7
-    probability: 100
+    minAmount: 1
+    maxAmount: 3
+    probability: 50
   - itemNumber: 300000002
-    minAmount: 2
-    maxAmount: 6
+    minAmount: 1
+    maxAmount: 3
+    probability: 50
+  - itemNumber: 300000003
+    minAmount: 1
+    maxAmount: 3
+    probability: 50
+  - itemNumber: 300000004
+    minAmount: 1
+    maxAmount: 3
     probability: 50

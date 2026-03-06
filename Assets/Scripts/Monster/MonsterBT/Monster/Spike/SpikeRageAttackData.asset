@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 285ae81aac0c1c54097e617317dd3b2a, type: 3}
+  m_Name: SpikeRageAttackData
+  m_EditorClassIdentifier: Assembly-CSharp::AttackDataSO
+  attackName: RageAttack
+  attackType: 1
+  pos: {x: 0, y: 0, z: 0}
+  yLower: -1
+  yUpper: 3
+  outerRadius: 3.5
+  innerRadius: 0
+  angles:
+  - minAngle: -90
+    maxAngle: 90
+  left: 3
+  right: 3
+  front: 2
+  back: 2
+  cooltime: 10
+  damage: 15
+  percentDamage: 0

@@ -16,7 +16,7 @@ public class BT_ChangeAnimation : BT_ActionNode
         {
             BT.ChangeAnimation(animationStateHash);
         }
-        
+        BT.PlayAnimation();
         return BTResult.Success;
     }
 #if UNITY_EDITOR

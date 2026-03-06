@@ -1,7 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 public class BT_SelectorNode : BT_CompositeNode
 {
     public override BTResult Execute()

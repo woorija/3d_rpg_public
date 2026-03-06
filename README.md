@@ -74,4 +74,7 @@ UniTask
 Copyright (c) 2019 Yoshifumi Kawai / Cysharp, Inc.
 Licensed under the MIT License.
 https://github.com/Cysharp/UniTask
+
+KCC 간판체
+한국저작권위원회, https://www.copyright.or.kr/main.do
 ```

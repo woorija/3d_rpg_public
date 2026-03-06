@@ -21,7 +21,7 @@ public class TalkManager : SingletonBehaviour<TalkManager>, IInputBindable
     [SerializeField] QuestInteractsUI questUI;
 
     bool isLastInteract = false;
-    public int npcId {  get; private set; } // 상점 오픈을 위해 외부에서 사용
+    int npcId;
     int lastTalkNpcId = 0;
     int questId = 0;
     int questProgress = 0;
@@ -29,21 +29,28 @@ public class TalkManager : SingletonBehaviour<TalkManager>, IInputBindable
     bool isSubInteract;
 
     public NpcData currentInteractNPCData { get; private set; }
+    public bool isTalking { get; private set; } = false;
 
     Dictionary<(int npcId, int questId, int questProgress, int talkIndex), (int talkNpcId, string talk)> talkDB;
 
-    const string questTalkText = "수락 할 퀘스트를 선택하세요.";
+    const string questTalkText = "진행 할 퀘스트를 선택하세요.";
     const string teleportTalkText = "이동하고 싶은 장소를 선택하세요.";
 
     Action<InputAction.CallbackContext> SubInteract1Handler;
     Action<InputAction.CallbackContext> SubInteract2Handler;
     Action<InputAction.CallbackContext> SubInteract3Handler;
     Action<InputAction.CallbackContext> SubInteract4Handler;
+
+    public Action onTalkStartHandler;
     private void Start()
     {
         interactButtons = new List<InteractButton>();
         InputInit();
         talkDB = new Dictionary<(int npcId, int questId, int questProgress, int talkIndex), (int talkNpcId, string talk)>();
+    }
+    private void OnDisable()
+    {
+        UnbindAllInputActions();
     }
     public void InitInputHandlers()
     {
@@ -100,6 +107,9 @@ public class TalkManager : SingletonBehaviour<TalkManager>, IInputBindable
             npcId = currentInteractNPCData.npcId;
             if (!talkUi.GetObjectActiveSelf() && npcId != 0) // 대화 시작
             {
+                GameManager.Instance.GameModeChange(GameMode.UIForced);
+                isTalking = true;
+                onTalkStartHandler.Invoke();
                 if (npcId != lastTalkNpcId)
                 {
                     TalkDataConverter(currentInteractNPCData.talkDataSO.talkDatas);
@@ -223,12 +233,13 @@ public class TalkManager : SingletonBehaviour<TalkManager>, IInputBindable
         CloseInteractButtons();
         questId = 0;
         questProgress = 0;
+        isTalking = false;
         interactButtons.Clear();
         teleportUI.CloseUI();
         questUI.CloseUI();
         talkUi.CloseUI();
         npcCamera.CloseNpcCam();
-        GameManager.Instance.GameModeChange(GameMode.ControllMode);
+        GameManager.Instance.GameModeChange(GameMode.GamePlay);
     }
     void CloseInteractButtons()
     {

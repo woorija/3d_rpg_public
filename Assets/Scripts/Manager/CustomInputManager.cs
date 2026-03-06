@@ -20,11 +20,11 @@ public class CustomInputManager : SingletonBehaviour<CustomInputManager>
         UI.Enable();
         Manager.Enable();
     }
-    public void EnablePlayerActionMap(string _ = null)
+    public void EnablePlayerActionMap()
     {
         Player.Enable();
     }
-    public void DisablePlayerActionMap(string _ = null)
+    public void DisablePlayerActionMap()
     {
         Player.Disable();
     }

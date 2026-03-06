@@ -132,7 +132,7 @@ public class ItemInformationUI : MonoBehaviour
     }
     void SetNameAndImage()
     {
-        AddressableManager.Instance.LoadAsset<Sprite>($"ItemIcon/I{item.itemId}.png", SetSprite);
+        AddressableManager.Instance.LoadAsset<Sprite>($"I{item.itemId}", SetSprite);
         itemName.text = item.name;
     }
     void SetSprite(Sprite _sprite)

@@ -18,7 +18,10 @@ public class UIOpenButton : MonoBehaviour
             UIManager.Instance.OpenUI(ui);
             SkillInformationUI.Instance.InformationClose();
             ItemInformationUI.Instance.InformationClose();
-            GameManager.Instance.GameModeChange(GameMode.UIMode);
+            if (GameManager.Instance.gameMode == GameMode.GamePlay)
+            {
+                GameManager.Instance.GameModeChange(GameMode.UI);
+            }
         }
     }
 }

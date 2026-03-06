@@ -24,6 +24,7 @@ public class MonsterBlackBoardEditor : Editor
         SetBlackBoardData();
         SetGameObjectData();
         EditorUtility.SetDirty(blackBoard);
+        AssetDatabase.SaveAssets();
     }
     void SetDropTable()
     {
@@ -46,6 +47,7 @@ public class MonsterBlackBoardEditor : Editor
             dropTable = AssetDatabase.LoadAssetAtPath<DropTableSO>(dropTablePath);
             if (dropTable != null)
             {
+                EditorUtility.SetDirty(dropTable);
                 blackBoard.SetDropTableSO(dropTable);
             }
         }
@@ -63,6 +65,7 @@ public class MonsterBlackBoardEditor : Editor
 
         if (blackBoardData != null)
         {
+            EditorUtility.SetDirty(blackBoardData);
             blackBoard.SetBlackBoardDataSO(blackBoardData);
         }
         else
@@ -71,6 +74,7 @@ public class MonsterBlackBoardEditor : Editor
             blackBoardData = AssetDatabase.LoadAssetAtPath<MonsterBlackBoardSO>(subBlackBoardDataPath);
             if (blackBoardData != null)
             {
+                EditorUtility.SetDirty(blackBoardData);
                 blackBoard.SetBlackBoardDataSO(blackBoardData);
             }
         }

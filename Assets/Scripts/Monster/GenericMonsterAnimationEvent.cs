@@ -1,8 +1,8 @@
 using UnityEngine;
 
-public class GenericMonsterAnimationEvent<TBehaviorTree, TBlackBoard> : MonoBehaviour where TBehaviorTree : BehaviorTree where TBlackBoard : BaseBlackBoard
+public class GenericMonsterAnimationEvent<TBlackBoard> : MonoBehaviour where TBlackBoard : BaseBlackBoard
 {
-    [SerializeField] protected TBehaviorTree BT;
+    [SerializeField] protected BehaviorTree BT;
     [SerializeField] protected TBlackBoard blackBoard;
 
     public void DieEvent()

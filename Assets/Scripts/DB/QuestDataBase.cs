@@ -60,7 +60,7 @@ public class QuestDataBase : MonoBehaviour, ICSVRead
                     incompatibleQuestIds.Add(CSVReader.GetIntData(incompatibleQuestIdArray[j]));
                 }
             }
-            InfoDB.Add(CSVReader.GetIntData(values[0]), new QuestInformation(values[1], values[2], values[3], values[4]));
+            InfoDB.Add(CSVReader.GetIntData(values[0]), new QuestInformation(values[1], CSVReader.GetStringData(values[2]), CSVReader.GetStringData(values[3]), CSVReader.GetStringData(values[4])));
             QuestDB.Add(CSVReader.GetIntData(values[0]), new QuestData(CSVReader.GetIntData(values[0]), (QuestType)CSVReader.GetIntData(values[5]), CSVReader.GetIntData(values[6]), preQuestIds, incompatibleQuestIds, CSVReader.GetIntData(values[9]), ids, counts));
         }
         AddressableManager.Instance.ReleaseAsset("QuestDB");

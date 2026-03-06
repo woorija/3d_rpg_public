@@ -17,9 +17,13 @@ public class UIDragButton : MonoBehaviour,IBeginDragHandler, IDragHandler, IEndD
     {
         UIManager.Instance.SortReset += SortReset;
     }
+    private void OnDestroy()
+    {
+        UIManager.Instance.SortReset -= SortReset;
+    }
     public void OnBeginDrag(PointerEventData eventData)
     {
-        tempDelta = 1920f / Screen.width;
+        tempDelta = 1f / canvas.scaleFactor;
         UIManager.Instance.ChangeSortOrder(canvas);
     }
 

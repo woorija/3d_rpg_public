@@ -1,16 +1,5 @@
 using UnityEngine;
 
-public struct DamageData
-{
-    public int damage;
-    public bool isCritical;
-    public DamageData(int _damage, bool _isCritical)
-    {
-        damage = _damage;
-        isCritical = _isCritical;
-    }
-}
-
 public class DamageManager : SingletonBehaviour<DamageManager>
 {
     public void PopupPlayerDamage(int _damage, Vector3 _pos)

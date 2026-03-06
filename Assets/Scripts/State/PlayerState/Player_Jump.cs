@@ -17,11 +17,12 @@ public class Player_Jump : Player_Base
     {
         base.StateUpdate();
         jumpTime += Time.deltaTime;
-        if (controller.IsGround() && jumpTime >= minJumpTime)
+        if (jumpTime < minJumpTime) return;
+        if (controller.IsGround())
         {
             FSM.ChangeState(StateType.Land);
         }
-        else if (controller.IsFall())
+        else if (controller.IsFall(-0.5f))
         {
             FSM.ChangeState(StateType.Fall);
         }

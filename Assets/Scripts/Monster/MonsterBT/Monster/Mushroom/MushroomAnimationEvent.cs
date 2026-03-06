@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class MushroomAnimationEvent : GenericMonsterAnimationEvent<MushroomBT, MushroomBlackBoard>
+public class MushroomAnimationEvent : GenericMonsterAnimationEvent<MushroomBlackBoard>
 {
     public void DashSkillEvent()
     {

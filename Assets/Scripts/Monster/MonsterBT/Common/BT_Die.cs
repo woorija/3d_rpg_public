@@ -8,15 +8,9 @@ public class BT_Die : BT_ActionNode
     }
     public override BTResult Execute()
     {
-        if(blackBoard.currentRespawnTime <= 0)
-        {
-            BT.MeshSetActiveTrue();
-            blackBoard.ChangeMovePoint();
-            blackBoard.Respawn();
-            BT.CheckDeleteRunningNode(99);
-            return BTResult.Success;
-        }
-        BT.GetRunningNode(this);
-        return BTResult.Running;
+        blackBoard.DropItem();
+        blackBoard.ReleaseHUD();
+        blackBoard.ResetRespawnTime();
+        return BTResult.Success;
     }
 }

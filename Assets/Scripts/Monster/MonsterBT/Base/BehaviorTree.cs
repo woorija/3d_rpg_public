@@ -9,6 +9,22 @@ public class BehaviorTree : MonoBehaviour
     [SerializeField] protected BT_Node RunningNode; // 러닝상태인 액션노드가 있을때 루트노드 대신 동작할 노드
     [SerializeField] protected BaseBlackBoard blackBoard;
     protected int currentAnimationHash;
+
+    private void Awake()
+    {
+        blackBoard.onHit += CheckDeleteRunningNode;
+    }
+    private void Update()
+    {
+        if (RunningNode != null)
+        {
+            RunningNode.Execute();
+        }
+        else
+        {
+            RootNode.Execute();
+        }
+    }
     //블랙보드는 각 몬스터 BT내에서 선언할것
     public virtual BaseBlackBoard GetBlackBoard() { return blackBoard; }     // 블랙보드를 가져오는 함수
     public virtual void GetRootNode(BT_Node _node)

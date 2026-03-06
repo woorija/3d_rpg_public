@@ -13,7 +13,7 @@ public class SettingUI : MonoBehaviour, ICloseable
     }
     public void OpenUI()
     {
-        GameManager.Instance.GameModeChange(GameMode.ForcedUIMode);
+        GameManager.Instance.GameModeChange(GameMode.UIForced);
         UIManager.Instance.OpenUI(this);
 
         KeyRebindMainUI.AllTabClose();
@@ -29,13 +29,13 @@ public class SettingUI : MonoBehaviour, ICloseable
     }
     public void Close()
     {
-        GameManager.Instance.GameModeChange(GameMode.ControllMode);
+        GameManager.Instance.GameModeChange(GameMode.GamePlay);
         DataManager.Instance.SaveSetting();
         gameObject.SetActive(false);
     }
     public void StartClose()
     {
-        GameManager.Instance.GameModeChange(GameMode.ControllMode);
+        GameManager.Instance.GameModeChange(GameMode.GamePlay);
         gameObject.SetActive(false);
     }
     public bool IsActive()

@@ -13,7 +13,7 @@ public class ItemSlotBase : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
             iconImage.sprite = null;
             return;
         }
-        AddressableManager.Instance.LoadAsset<Sprite>($"ItemIcon/I{_num}.png", SetIconSprite);
+        AddressableManager.Instance.LoadAsset<Sprite>($"I{_num}", SetIconSprite);
     }
     void SetIconSprite(Sprite _sprite)
     {

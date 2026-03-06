@@ -29,21 +29,21 @@ public class PlayerAnimatorEvent : MonoBehaviour
         SetSkillPhysicalDamage(0);
         Vector3 centerPos = controller.transform.position;
         centerPos.y += 0.8f;
-        hitUtility.CircularSectorHit(centerPos, transform.forward, 1.25f, 120f, 3f, 2, 10, 1f);
+        hitUtility.CircularSectorHit(centerPos, transform.forward, 2.5f, -1f, 1f, -120f, 120f, 2, 1, 1f);
     }
     public void IsS100001Hit()
     {
         SetSkillPhysicalDamage(0);
         Vector3 centerPos = controller.transform.position;
         centerPos.y += 0.8f;
-        hitUtility.CircularSectorHit(centerPos, transform.forward, 1.75f, 120f, 3f, 2, 2, 1f);
+        hitUtility.CircularSectorHit(centerPos, transform.forward, 1.75f, -1f, 1f, -120f, 120f, 2, 2, 1f);
     }
     public void IsS100002Hit()
     {
         SetSkillPhysicalDamage(0);
         Vector3 centerPos = controller.transform.position;
         centerPos.y += 0.8f;
-        hitUtility.CircularSectorHit(centerPos, transform.forward, 1.75f, 120f, 3f, 4, 1, 1f);
+        hitUtility.CircularSectorHit(centerPos, transform.forward, 1.75f, -0.5f, 0.5f, -120f, 120f, 4, 1, 1f);
     }
     public void IsS210001Hit()
     {
@@ -58,14 +58,14 @@ public class PlayerAnimatorEvent : MonoBehaviour
         SetSkillPhysicalDamage(0);
         Vector3 centerPos = controller.transform.position;
         centerPos.y += 0.8f;
-        hitUtility.CircularHit(centerPos, 1.25f, 3f, 5, 2, 1f);
+        hitUtility.CircularHit(centerPos, 1.25f, -0.5f, 0.5f, 5, 2, 1f);
     }
     public void IsS210003_2Hit()
     {
         SetSkillPhysicalDamage(1);
         Vector3 centerPos = controller.transform.position;
         centerPos.y += 0.8f;
-        hitUtility.CircularSectorHit(centerPos, transform.forward, 1.25f, 120f, 3f, 1, 1, 1f);
+        hitUtility.CircularSectorHit(centerPos, transform.forward, 1.25f, -0.5f, 0.5f, -120f, 120f, 1, 1, 1f);
     }
     public void IsS210005Hit()
     {

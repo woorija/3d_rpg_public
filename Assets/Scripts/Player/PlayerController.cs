@@ -20,6 +20,8 @@ public class PlayerController : MonoBehaviour, IInputBindable
     public int currentPlaySkillId { get; private set; }
     Action[] onUseQuickSlots;
 
+    Action onIdleStateChanged;
+
     Action<InputAction.CallbackContext> quickSlot1Handler;
     Action<InputAction.CallbackContext> quickSlot2Handler;
     Action<InputAction.CallbackContext> quickSlot3Handler;
@@ -36,6 +38,7 @@ public class PlayerController : MonoBehaviour, IInputBindable
         playerController = GetComponent<CharacterController>();
 
         onUseQuickSlots = new Action[8];
+        onIdleStateChanged = () => FSM.ChangeState(StateType.Idle);
     }
     private void Start()
     {
@@ -43,6 +46,10 @@ public class PlayerController : MonoBehaviour, IInputBindable
         InputInit();
         EventInit();
         moveDirection = Vector3.forward;
+    }
+    private void OnDisable()
+    {
+        EventRemove();
     }
     private void InputInit()
     {
@@ -57,15 +64,35 @@ public class PlayerController : MonoBehaviour, IInputBindable
             onUseQuickSlots[index] += () => QuickSlotData.Instance.Use(index);
         }
         QuickSlotData.Instance.SkillAddlistener(UseSkill);
-        CustomSceneManager.Instance.playerTeleportEvent += Teleport;
-        status.OnHit += ChangeHitState;
-        status.OnDie += ChangeDieState;
+        CustomSceneManager.Instance.onPlayerTeleportHandler += Teleport;
+        status.onHit += ChangeHitState;
+        status.onDie += ChangeDieState;
         status.onMoveSpeedMultiplierChanged += SetAnimatorMoveSpeedMultiplier;
         status.onActionSpeedMultiplierChanged += SetAnimatorActionSpeedMultiplier;
+        TalkManager.Instance.onTalkStartHandler += onIdleStateChanged;
+        GameManager.Instance.onPlayerRespawn += onIdleStateChanged;
+        CustomSceneManager.Instance.onPlayerInvincibleHandler += SetInvincible;
+    }
+    private void EventRemove()
+    {
+        for (int i = 0; i < onUseQuickSlots.Length; i++)
+        {
+            int index = i;
+            onUseQuickSlots[index] = null;
+        }
+        QuickSlotData.Instance.SkillRemovelistener(UseSkill);
+        CustomSceneManager.Instance.onPlayerTeleportHandler -= Teleport;
+        status.onHit -= ChangeHitState;
+        status.onDie -= ChangeDieState;
+        status.onMoveSpeedMultiplierChanged -= SetAnimatorMoveSpeedMultiplier;
+        status.onActionSpeedMultiplierChanged -= SetAnimatorActionSpeedMultiplier;
+        TalkManager.Instance.onTalkStartHandler -= onIdleStateChanged;
+        GameManager.Instance.onPlayerRespawn -= onIdleStateChanged;
+        CustomSceneManager.Instance.onPlayerInvincibleHandler -= SetInvincible;
     }
     private void Update()
     {
-        if (GameManager.Instance.gameMode == GameMode.ControllMode)
+        if (GameManager.Instance.gameMode == GameMode.GamePlay)
         {
             FSM.StateUpdate();
             if(inputVector != Vector2.zero)
@@ -76,6 +103,10 @@ public class PlayerController : MonoBehaviour, IInputBindable
             {
                 moveVector = Vector3.zero;
             }
+        }
+        else
+        {
+            moveVector = Vector3.zero;
         }
 
         if (jumpTriggered)
@@ -229,7 +260,7 @@ public class PlayerController : MonoBehaviour, IInputBindable
     {
         currentPlaySkillId = _id; // 스킬관련 계산용 추가 변수
         Skill skill = SkillDataBase.SkillDB[_id];
-        if (FSM.GetPriority() <= skill.entryPriority && GameManager.Instance.gameMode == GameMode.ControllMode)
+        if (FSM.GetPriority() <= skill.entryPriority && GameManager.Instance.gameMode == GameMode.GamePlay)
         {
             status.Mp -= _useMp;
             CooltimeManager.Instance.AddCooltime(_id, skill.coolTime);
@@ -259,7 +290,10 @@ public class PlayerController : MonoBehaviour, IInputBindable
         }
         else
         {
-            gravityVelocity = 0f;
+            if (gravityVelocity < 0f)
+            {
+                gravityVelocity = -0.5f;
+            }
         }
     }
     public bool IsMove()
@@ -270,22 +304,41 @@ public class PlayerController : MonoBehaviour, IInputBindable
         }
         return true;
     }
-    public bool IsFall()
-    {
-        if (!playerController.isGrounded && gravityVelocity < -1f)
-        {
-            return true;
-        }
-        return false;
-    }
     public bool IsGround()
     {
-        if (playerController.isGrounded)
+        if (gravityVelocity > 0f) return false;
+
+        Vector3 pos = transform.position + Vector3.up * 0.1f;
+
+        return Physics.SphereCast(
+            pos,
+            0.14f,
+            Vector3.down,
+            out _,
+            0.1f,
+            LayerMasks.Ground,
+            QueryTriggerInteraction.Ignore
+            );
+    }
+    public bool IsFall(float _velocity)
+    {
+        if (IsGround()) return false;
+
+        bool hit = Physics.Raycast(
+            transform.position,
+            Vector3.down,
+            1f,
+            LayerMasks.Ground,
+            QueryTriggerInteraction.Ignore
+            );
+
+        if (gravityVelocity < _velocity && !hit)
         {
             return true;
         }
         return false;
     }
+    
     public void ChangeHitState()
     {
         if (FSM.CanChangeState(StateType.Hit))
@@ -302,18 +355,18 @@ public class PlayerController : MonoBehaviour, IInputBindable
     }
     public void Rotate()
     {
-        if (GameManager.Instance.gameMode != GameMode.ControllMode) return;
+        if (GameManager.Instance.gameMode != GameMode.GamePlay) return;
         transform.rotation = Quaternion.LookRotation(moveDirection);
     }
     public void RotateToWalk()
     {
-        if (GameManager.Instance.gameMode != GameMode.ControllMode) return;
+        if (GameManager.Instance.gameMode != GameMode.GamePlay) return;
         CalculateMoveDirection(inputVector);
         transform.rotation = Quaternion.LookRotation(moveDirection);
     }
     public void LookForward()
     {
-        if (GameManager.Instance.gameMode != GameMode.ControllMode) return;
+        if (GameManager.Instance.gameMode != GameMode.GamePlay) return;
         Vector3 lookVector = Camera.main.transform.forward;
         lookVector.y = 0f;
         transform.rotation = Quaternion.LookRotation(lookVector);
@@ -363,7 +416,7 @@ public class PlayerController : MonoBehaviour, IInputBindable
         transform.position = _pos;
         
         playerController.enabled = true;
-        Debug.Log(deltaPos);
+
         GameManager.Instance.CameraTeleport(transform, deltaPos);
     }
     public void SetInvincible(bool _value)

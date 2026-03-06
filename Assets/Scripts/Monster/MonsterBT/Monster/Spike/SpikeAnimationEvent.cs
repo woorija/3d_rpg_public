@@ -1,4 +1,4 @@
-public class SpikeAnimationEvent : GenericMonsterAnimationEvent<SpikeBT, SpikeBlackBoard>
+public class SpikeAnimationEvent : GenericMonsterAnimationEvent<SpikeBlackBoard>
 {
     public void DashSkillEvent()
     {
@@ -7,11 +7,25 @@ public class SpikeAnimationEvent : GenericMonsterAnimationEvent<SpikeBT, SpikeBl
             blackBoard.DashSkillAttack();
         }
     }
-    public void JumpSkillEvent()
+    public void RageSkillEvent()
     {
-        if (!blackBoard.player.IsInvincible) 
+        if (!blackBoard.player.IsInvincible)
         {
-            blackBoard.JumpSkillAttack();
+            blackBoard.RageSkillAttack();
+        }
+    }
+    public void RightSmashEvent()
+    {
+        if (!blackBoard.player.IsInvincible)
+        {
+            blackBoard.RightSmashAttack();
+        }
+    }
+    public void LeftSmashEvent()
+    {
+        if (!blackBoard.player.IsInvincible)
+        {
+            blackBoard.LeftSmashAttack();
         }
     }
 }

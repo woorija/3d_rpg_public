@@ -7,7 +7,7 @@ public class CSVReader
     {
         sb.Clear();
         sb.Append(_data);
-        sb.Replace("<br>", "\n"); //줄바꿈 치환
+        sb.Replace("<br>", "\\n"); //줄바꿈 치환
         sb.Replace("<c>", ","); // ,치환
         return sb.ToString();
     }

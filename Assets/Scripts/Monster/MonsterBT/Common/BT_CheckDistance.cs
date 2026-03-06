@@ -1,9 +1,10 @@
 using UnityEngine;
 
-public class BT_CheckDistance : BT_ActionNode
+public class BT_CheckDistance : BT_ConditionNode
 {
     protected BaseBlackBoard blackBoard;
-    [SerializeField] protected float distance;
+    [SerializeField, GetBlackBoardData(typeof(float))] protected float distance;
+    [SerializeField, GetBlackBoardData(typeof(float))] protected float stoppingDistance;
     protected override void Awake()
     {
         base.Awake();
@@ -11,18 +12,19 @@ public class BT_CheckDistance : BT_ActionNode
     }
     public override BTResult Execute()
     {
-        MoveStop();
-        if (blackBoard.CheckDistance(distance * distance))
+        if (CheckCondition())
         {
-            if (blackBoard.CheckHeightDifference(transform.position.y))
-            {
-                return BTResult.Success;
-            }
+            MoveStop();
+            return BTResult.Success;
         }
         return BTResult.Failure;
     }
+    protected override bool CheckCondition()
+    {
+        return blackBoard.CheckDistance(distance * distance);
+    }
     protected virtual void MoveStop()
     {
-
+        blackBoard.agent.stoppingDistance = stoppingDistance;
     }
 }

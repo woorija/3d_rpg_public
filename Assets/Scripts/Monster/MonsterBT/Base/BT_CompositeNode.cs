@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,7 +10,7 @@ public class BT_CompositeNode : BT_Node
     {
         return BTResult.Success;
     }
-    public void ResetNode()
+    public override void ResetNode()
     {
         children.Clear();
     }

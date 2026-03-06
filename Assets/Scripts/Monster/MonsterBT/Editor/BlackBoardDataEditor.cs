@@ -8,62 +8,12 @@ using System.IO;
 [CustomEditor(typeof(MonsterBlackBoardSO), true)]
 public class BlackBoardDataEditor : Editor
 {
-    Type[] dataTypes;
-    string[] dataNames;
-    int selectedIndex = -1;
-    private void OnEnable()
-    {
-        var baseType = typeof(MonsterBlackBoardSO);
-        dataTypes = AppDomain.CurrentDomain.GetAssemblies()
-            .SelectMany(assembly => assembly.GetTypes())
-            .Where(type => baseType.IsAssignableFrom(type))
-            .ToArray();
-
-        dataNames = dataTypes.Select(type => type.Name).ToArray();
-    }
     public override void OnInspectorGUI()
     {
         base.OnInspectorGUI();
-        CustomEditorDrawer.DrawLine();
-        selectedIndex = EditorGUILayout.Popup("Change DataType", selectedIndex, dataNames);
-        CustomEditorDrawer.DrawButton("Apply", () => ApplySelection());
 
         CustomEditorDrawer.DrawLine();
         CustomEditorDrawer.DrawButton("SetUp", () => SetUp());
-    }
-
-    void ApplySelection()
-    {
-        if (selectedIndex == -1) return;
-        MonsterBlackBoardSO currentData = (MonsterBlackBoardSO)target;
-
-        string assetPath = AssetDatabase.GetAssetPath(currentData);
-        string assetName = currentData.name;
-
-        MonsterBlackBoardSO newData = (MonsterBlackBoardSO)CreateInstance(dataTypes[selectedIndex]);
-
-        CopyData(currentData, newData);
-
-        newData.name = assetName;
-
-        AssetDatabase.CreateAsset(newData, assetPath);
-        DestroyImmediate(currentData, true);
-
-        AssetDatabase.SaveAssets();
-        AssetDatabase.Refresh();
-        Selection.activeObject = newData;
-    }
-
-    void CopyData(MonsterBlackBoardSO _currentData, MonsterBlackBoardSO _newData)
-    {
-        var dataType = typeof(MonsterBlackBoardSO);
-        var fields = dataType.GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
-
-        foreach (var field in fields)
-        {
-            var value = field.GetValue(_currentData);
-            field.SetValue(_newData, value);
-        }
     }
 
     void SetUp()

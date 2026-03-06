@@ -15,7 +15,7 @@ public class CraftUI : MonoBehaviour, ICloseable
     }
     public void OpenUI()
     {
-        GameManager.Instance.GameModeChange(GameMode.ForcedUIMode);
+        GameManager.Instance.ChangeUIForcedMode();
         UIManager.Instance.OpenUI(this);
         gameObject.SetActive(true);
     }
@@ -30,6 +30,7 @@ public class CraftUI : MonoBehaviour, ICloseable
 
     public void Close()
     {
+        UIManager.Instance.CloseUI(this);
         gameObject.SetActive(false);
     }
 

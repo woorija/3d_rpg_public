@@ -11,7 +11,7 @@ public class ShopMainUI : MonoBehaviour, ICloseable
     {
         gameObject.SetActive(true);
         UIManager.Instance.OpenUI(this);
-        GameManager.Instance.GameModeChange(GameMode.ForcedUIMode);
+        GameManager.Instance.ChangeUIForcedMode();
         SetShop();
     }
     void SetShop()

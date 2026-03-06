@@ -44,7 +44,7 @@ public class DropItem : PoolBehaviour<DropItem>
             {
                 InventoryData.Instance.GetItem(id, amount);
             }
-            
+            DataManager.Instance.SaveInventory();
             SetTrailVfx(other.transform);
 
             Release(this);

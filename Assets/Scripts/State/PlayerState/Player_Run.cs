@@ -8,7 +8,11 @@ public class Player_Run : Player_Base
 
     public override void StateUpdate()
     {
-        if (!controller.isRun)
+        if (controller.IsFall(-1.5f))
+        {
+            FSM.ChangeState(StateType.Fall);
+        }
+        else if (!controller.isRun)
         {
             FSM.ChangeState(StateType.Walk);
         }

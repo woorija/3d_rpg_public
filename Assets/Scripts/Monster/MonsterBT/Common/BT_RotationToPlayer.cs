@@ -11,7 +11,7 @@ public class BT_RotationToPlayer : BT_ActionNode
     }
     public override BTResult Execute()
     {
-        Vector3 RotatePos = blackBoard.player.transform.position - BT.transform.position;
+        Vector3 RotatePos = blackBoard.player.centerPos.position - BT.transform.position;
         RotatePos.y = 0;
 
         Quaternion targetRotation = Quaternion.LookRotation(RotatePos);

@@ -4,11 +4,10 @@ using UnityEngine;
 public class NpcNameTag : MonoBehaviour
 {
     [SerializeField] TMP_Text nameTag;
-    int playerLayer;
+
     private void Awake()
     {
         nameTag.alpha = 0f;
-        playerLayer = LayerMask.NameToLayer("Player");
     }
     private void Update()
     {
@@ -16,14 +15,14 @@ public class NpcNameTag : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.layer.Equals(playerLayer))
+        if (other.gameObject.layer == Layers.Player)
         {
             nameTag.alpha = 1f;
         }
     }
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.layer.Equals(playerLayer))
+        if (other.gameObject.layer == Layers.Player)
         {
             nameTag.alpha = 0f;
         }

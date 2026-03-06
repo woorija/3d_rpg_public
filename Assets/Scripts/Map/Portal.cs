@@ -6,9 +6,9 @@ public class Portal : MonoBehaviour
     [SerializeField] Vector3 teleportPosition;
     private async void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player") && !CustomSceneManager.Instance.isSceneChanged)
+        if (other.gameObject.layer == Layers.Player && !CustomSceneManager.Instance.isSceneChanged)
         {
-            await CustomSceneManager.Instance.LoadScene(sceneName,teleportPosition);
+            await CustomSceneManager.Instance.LoadScene(sceneName, teleportPosition);
         }
     }
 }

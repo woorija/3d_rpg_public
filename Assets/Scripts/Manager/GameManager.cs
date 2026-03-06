@@ -2,15 +2,19 @@ using UnityEngine;
 using Unity.Cinemachine;
 using UnityEngine.InputSystem;
 using System.IO;
+using Cysharp.Threading.Tasks;
+using System;
 
 public class GameManager : SingletonBehaviour<GameManager>, IInputBindable
 {
-    public GameMode gameMode = GameMode.ControllMode;
+    public GameMode gameMode = GameMode.GamePlay;
     [SerializeField] CinemachineCamera cineCam;
     [SerializeField] Skybox mainCamSkybox;
     public static bool playerControllable {  get; private set; }
     string screenshotPath;
 
+    public CurrentSpawnPoint spawnPoint {  get; private set; } = new CurrentSpawnPoint();
+    public Action onPlayerRespawn;
     void Start()
     {
         Application.targetFrameRate = 60;
@@ -23,6 +27,11 @@ public class GameManager : SingletonBehaviour<GameManager>, IInputBindable
     private void OnApplicationQuit()
     {
         DataManager.Instance.SavePlayer();
+        DataManager.Instance.SaveWorld();
+    }
+    private void OnDisable()
+    {
+        UnbindAllInputActions();
     }
     private void InputInit()
     {
@@ -32,11 +41,11 @@ public class GameManager : SingletonBehaviour<GameManager>, IInputBindable
     {
         switch (gameMode)
         {
-            case GameMode.ControllMode:
-                GameModeChange(GameMode.UIMode);
+            case GameMode.GamePlay:
+                GameModeChange(GameMode.UI);
                 break;
-            case GameMode.UIMode:
-                GameModeChange(GameMode.ControllMode);
+            case GameMode.UI:
+                GameModeChange(GameMode.GamePlay);
                 break;
         }
     }
@@ -53,40 +62,61 @@ public class GameManager : SingletonBehaviour<GameManager>, IInputBindable
     }
     public void GameModeChange(GameMode _mode)
     {
+        Debug.Log($"적용된 게임모드{_mode}");
         gameMode = _mode;
         switch(gameMode)
         {
-            case GameMode.ControllMode:
-            case GameMode.NotControllable:
+            case GameMode.GamePlay:
+            case GameMode.CutScene:
                 Cursor.lockState = CursorLockMode.Locked;
                 Cursor.visible = false;
                 cineCam.enabled = true;
                 break;
-            case GameMode.UIMode:
-            case GameMode.ForcedUIMode:
-                cineCam.enabled = false;
+            case GameMode.UI:
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
                 break;
+            case GameMode.UIForced:
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
+                cineCam.enabled = false;
+                break;
         }
     }
-    public void ExitForcedUIMode()
+    public void ExitUIForcedMode()
     {
-        GameModeChange(GameMode.ControllMode);
+        GameModeChange(GameMode.GamePlay);
     }
     public void ChangeUIMode()
     {
-        GameModeChange(GameMode.UIMode);
+        GameModeChange(GameMode.UI);
+    }
+    public void ChangeUIForcedMode()
+    {
+        GameModeChange(GameMode.UIForced);
     }
     public void EnableCam()
     {
         cineCam.enabled = true;
     }
+    public void PlayerRespawn()
+    {
+        PlayerRespawnAsync().Forget();
+    }
+    private async UniTask PlayerRespawnAsync()
+    {
+        await CustomSceneManager.Instance.LoadScene(spawnPoint.sceneName, spawnPoint.position);
+        onPlayerRespawn?.Invoke();
+        CustomInputManager.Instance.EnablePlayerActionMap();
+    }
     public void CameraTeleport(Transform _player, Vector3 _deltaPos)
     {
         cineCam.OnTargetObjectWarped(_player, _deltaPos);
     }
-
+    public void SetSpawnPoint(RespawnPoint _spawnPoint)
+    {
+        spawnPoint.SetSpawnPoint(_spawnPoint);
+    }
     public void ChangeSkybox(Material _material)
     {
         mainCamSkybox.material = _material;

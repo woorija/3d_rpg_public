@@ -35,9 +35,12 @@ public class BT_ChangeAnimationEditor : ActionNodeEditor
         if (stateHashes != null && stateHashes.Length != 0)
         {
             selectedAnimationStateIndex = System.Array.IndexOf(stateHashes, node.animationStateHash);
+            
             if (selectedAnimationStateIndex < 0)
             {
                 selectedAnimationStateIndex = 0;
+                node.SetHash(stateHashes[0]);
+                EditorUtility.SetDirty(node);
             }
 
             if (stateNames != null && stateNames.Count > 0)

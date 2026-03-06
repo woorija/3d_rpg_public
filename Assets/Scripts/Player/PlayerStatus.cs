@@ -8,9 +8,10 @@ public class PlayerStatus : MonoBehaviour
 {
     // 고정변수
     public const float MoveSpeed = 3f;
-    public const float RunSpeed = 2f;
+    public const float RunSpeed = 4f;
     public const float JumpForce = 4.5f;
     public const float Gravity = -9.81f;
+    [field: SerializeField] public Transform centerPos { get; private set; } // LookPos 사용할것
 
     // 변동 클래스변수
     public int gender = 1; // 1남 2여
@@ -78,7 +79,7 @@ public class PlayerStatus : MonoBehaviour
             exhaustTime = Mathf.Max(exhaustTime, value);
         }
     }
-    public bool IsInvincible { get; set; } = true;
+    public bool IsInvincible { get; set; } = false;
     public bool IsSuperArmor { get; set; } = false;
     public int ArmorBreakLevel { get; private set; }
 
@@ -144,13 +145,15 @@ public class PlayerStatus : MonoBehaviour
         }
         set
         {
+            if (IsDie && value < 0) return;
             hp = Mathf.Clamp(value, 0, finalStats[StatusType.Hp]);
             if (hp == 0)
             {
                 IsDie = true;
-                OnDie.Invoke();
+                IsInvincible = true;
+                onDie.Invoke();
             }
-            hpChangeEvent?.Invoke();
+            onHpChanged?.Invoke();
             onStatusChangeEvent?.Invoke(StatusType.Hp);
         }
     }
@@ -164,7 +167,7 @@ public class PlayerStatus : MonoBehaviour
         set
         {
             mp = Mathf.Clamp(value, 0, finalStats[StatusType.Mp]);
-            mpChangeEvent?.Invoke();
+            onMpChanged?.Invoke();
             onStatusChangeEvent?.Invoke(StatusType.Mp);
         }
     }
@@ -184,7 +187,7 @@ public class PlayerStatus : MonoBehaviour
                 exp -= MaxExp;
                 MaxExp = ExpTable.expTable[level];
             }
-            expChangeEvent?.Invoke();
+            onExpChanged?.Invoke();
         }
     }
     int maxExp = 1;
@@ -197,7 +200,7 @@ public class PlayerStatus : MonoBehaviour
         set
         {
             maxExp = value;
-            maxExpChangeEvent?.Invoke();
+            onMaxExpChanged?.Invoke();
         }
     }
     float stamina;
@@ -215,14 +218,14 @@ public class PlayerStatus : MonoBehaviour
 
             if (prevStamina != stamina)
             {
-                staminaChangeEvent?.Invoke();
+                onStaminaChanged?.Invoke();
                 if (stamina == maxStamina && prevStamina != maxStamina)
                 {
-                    staminaMaxEvent?.Invoke();
+                    onStaminaMaxed?.Invoke();
                 }
                 else if (stamina != maxStamina && prevStamina == maxStamina)
                 {
-                    staminaNotMaxEvent?.Invoke();
+                    onStaminaNotMaxed?.Invoke();
                 }
             }
         }
@@ -248,8 +251,8 @@ public class PlayerStatus : MonoBehaviour
     public event Action<float> onActionSpeedMultiplierChanged;
     public event Action<float> onCooltimeReduceMultiplerChanged;
 
-    public event Action OnHit;
-    public event Action OnDie;
+    public event Action onHit;
+    public event Action onDie;
 
     public Action onLevelUpEvent;
     public Action onClassRankUpEvent;
@@ -267,17 +270,18 @@ public class PlayerStatus : MonoBehaviour
     event Action onActionSpeedChanged;
     event Action onCooltimeReduceChanged;
 
-    public UnityEvent hpChangeEvent;
-    public UnityEvent mpChangeEvent;
-    public UnityEvent expChangeEvent;
-    public UnityEvent staminaChangeEvent;
-    public UnityEvent staminaMaxEvent;
-    public UnityEvent staminaNotMaxEvent;
+    public event Action onHpChanged;
+    public event Action onMpChanged;
+    public event Action onExpChanged;
 
-    public UnityEvent maxHpChangeEvent;
-    public UnityEvent maxMpChangeEvent;
-    public UnityEvent maxExpChangeEvent;
-    public UnityEvent maxStaminaChangeEvent;
+    public event Action onStaminaChanged;
+    public event Action onStaminaMaxed;
+    public event Action onStaminaNotMaxed;
+
+    public event Action onMaxHpChanged;
+    public event Action onMaxMpChanged;
+    public event Action onMaxExpChanged;
+    public event Action onMaxStaminaChanged;
 
     // 메서드
     private void Awake()
@@ -296,6 +300,10 @@ public class PlayerStatus : MonoBehaviour
             allocatedAbilityPoints.Add(0);
         }
         damageCoefficient = new DamageCoefficient();
+    }
+    private void OnDisable()
+    {
+        GameManager.Instance.onPlayerRespawn -= Respawn;
     }
     public void AddStatusEvent(Action<StatusType> _event)
     {
@@ -359,9 +367,9 @@ public class PlayerStatus : MonoBehaviour
         }
         finalStats.RegisterGlobalEvent(onStatusChangeEvent);
 
-        finalStats.RegisterStatusEvent(StatusType.Hp, maxHpChangeEvent);
-        finalStats.RegisterStatusEvent(StatusType.Mp, maxMpChangeEvent);
-        finalStats.RegisterStatusEvent(StatusType.Stamina, maxStaminaChangeEvent);
+        finalStats.RegisterStatusEvent(StatusType.Hp, onMaxHpChanged);
+        finalStats.RegisterStatusEvent(StatusType.Mp, onMaxMpChanged);
+        finalStats.RegisterStatusEvent(StatusType.Stamina, onMaxStaminaChanged);
         finalStats.RegisterStatusEvent(StatusType.PhysicalAttackPower, onPhysicalAttackPowerChanged);
         finalStats.RegisterStatusEvent(StatusType.MagicAttackPower, onMagicAttackPowerChanged);
         finalStats.RegisterStatusEvent(StatusType.WeaponMastery, onWeaponMasteryChanged);
@@ -371,6 +379,11 @@ public class PlayerStatus : MonoBehaviour
         finalStats.RegisterStatusEvent(StatusType.MoveSpeed, onMoveSpeedChanged);
         finalStats.RegisterStatusEvent(StatusType.AttackSpeed, onActionSpeedChanged);
         finalStats.RegisterStatusEvent(StatusType.CooltimeReduce, onCooltimeReduceChanged);
+
+        onDie += CustomInputManager.Instance.DisablePlayerActionMap;
+        onDie += PopupUI.Instance.ShowPlayerDiePopup;
+
+        GameManager.Instance.onPlayerRespawn += Respawn;
     }
     public async void Init()
     {
@@ -382,7 +395,7 @@ public class PlayerStatus : MonoBehaviour
         baseStats[StatusType.Hp] = 1; // 게임 시작시 캐릭터 죽음을 방지하기 위함
         Level = 1;
 
-        correctionTable = await AddressableManager.Instance.LoadAssetAsync<StatusCorrectionTableSO>($"{playerClass:00}_{classRank:00}");
+        correctionTable = await AddressableManager.Instance.LoadAssetAsync<StatusCorrectionTableSO>($"{playerClass:00}_{classRank:00}", AddressableAssetScope.Global);
         SetStatusTable();
         CalculateCooltimeReduce(0);
         SetBaseStatus();
@@ -404,8 +417,14 @@ public class PlayerStatus : MonoBehaviour
         Hp -= _damage;
         if (!IsSuperArmor && !IsDie)
         {
-            OnHit.Invoke();
+            onHit.Invoke();
         }
+    }
+    void Respawn()
+    {
+        Hp = 1;
+        IsDie = false;
+        IsInvincible = false;
     }
     void LevelUp()
     {
@@ -430,8 +449,6 @@ public class PlayerStatus : MonoBehaviour
     public void ClassChange(int _id = 0)
     {
         ResetBaseStauts();
-        // 이전 클래스 데이터 제거
-        AddressableManager.Instance.ReleaseAsset($"{playerClass:00}_{classRank:00}");
         switch (_id)
         {
             case 0:
@@ -457,12 +474,16 @@ public class PlayerStatus : MonoBehaviour
 
     public void ClassChange(int _class, int _rank)
     {
+        // 이전 클래스 데이터 제거
+        AddressableManager.Instance.ReleaseAsset($"{playerClass:00}_{classRank:00}");
         playerClass = _class;
         classRank = _rank;
         ClassRankChangeEvent();
     }
     public void ClassRankUp()
     {
+        // 이전 클래스 데이터 제거
+        AddressableManager.Instance.ReleaseAsset($"{playerClass:00}_{classRank:00}");
         classRank++;
         ClassRankChangeEvent();
     }
@@ -470,7 +491,7 @@ public class PlayerStatus : MonoBehaviour
     {
         SkillData.Instance.GetRankUpSP();
         SkillData.Instance.SetAcquiredSkills(playerClass, classRank);
-        correctionTable = await AddressableManager.Instance.LoadAssetAsync<StatusCorrectionTableSO>($"{playerClass:00}_{classRank:00}");
+        correctionTable = await AddressableManager.Instance.LoadAssetAsync<StatusCorrectionTableSO>($"{playerClass:00}_{classRank:00}", AddressableAssetScope.Global);
         SetStatusTable();
         StatusReset();
         onClassRankUpEvent?.Invoke();
@@ -630,7 +651,7 @@ public class PlayerStatus : MonoBehaviour
         EventInit();
         Level = _level;
         MaxExp =  ExpTable.expTable[level];
-        correctionTable = await AddressableManager.Instance.LoadAssetAsync<StatusCorrectionTableSO>($"{playerClass:00}_{classRank:00}");
+        correctionTable = await AddressableManager.Instance.LoadAssetAsync<StatusCorrectionTableSO>($"{playerClass:00}_{classRank:00}", AddressableAssetScope.Global);
         SetStatusTable();
     }
     public void LoadBaseStatusData(List<int> _allocatedAP, int _remainingAP)

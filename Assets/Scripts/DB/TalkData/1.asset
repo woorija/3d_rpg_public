@@ -17,54 +17,70 @@ MonoBehaviour:
     questProgress: 0
     talkIndex: 0
     talkNpcId: 1
-    talk: "\uB300\uC0AC1"
+    talk: "\uCC98\uC74C\uBCF4\uB294 \uC0AC\uB78C\uC774\uB124?"
   - questId: 0
     questProgress: 0
     talkIndex: 1
-    talkNpcId: 2
-    talk: "\uB300\uC0AC2"
-  - questId: 0
+    talkNpcId: 1
+    talk: "\uB9CC\uB098\uC11C \uBC18\uAC00\uC6CC!\n\uB098\uB294 \uD55C\uC2A4\uC57C."
+  - questId: 101
+    questProgress: 0
+    talkIndex: 0
+    talkNpcId: 1
+    talk: "\uC9C4\uC9DC \uCC98\uC74C\uBCF4\uB294 \uC0AC\uB78C\uC774\uC796\uC544?"
+  - questId: 101
+    questProgress: 0
+    talkIndex: 1
+    talkNpcId: 1
+    talk: "\uB10C \uC5B4\uB514\uC11C\uC654\uC5B4?"
+  - questId: 101
     questProgress: 0
     talkIndex: 2
     talkNpcId: 1
-    talk: "\uB300\uC0AC3"
+    talk: "\uC5B4\uCA4C\uB2E4 \uC5EC\uAE30 \uC624\uAC8C\uB41C\uAC70\uC57C?"
   - questId: 101
-    questProgress: 0
-    talkIndex: 0
-    talkNpcId: 1
-    talk: "\uD018\uC2A4\uD2B8\uC6A9 \uB300\uC0AC1"
-  - questId: 101
-    questProgress: 0
-    talkIndex: 1
-    talkNpcId: 1
-    talk: "\uD018\uC2A4\uD2B8\uC6A9 \uB300\uC0AC2"
-  - questId: 101
-    questProgress: 2
-    talkIndex: 0
-    talkNpcId: 2
-    talk: "\uD018\uC2A4\uD2B8\uAC00 \uC9C4\uD589\uB41C\uB2E4?"
-  - questId: 101
-    questProgress: 2
-    talkIndex: 1
-    talkNpcId: 2
-    talk: "\uB300\uD654 \uD018\uC2A4\uD2B8 \uD14C\uC2A4\uD2B8"
-  - questId: 102
-    questProgress: 0
-    talkIndex: 0
-    talkNpcId: 1
-    talk: "\uC798\uC654\uB124"
-  - questId: 102
-    questProgress: 0
-    talkIndex: 1
-    talkNpcId: 1
-    talk: "\uBC15\uC950\uB97C \uC880 \uC7A1\uC544\uC8FC\uAC8C"
-  - questId: 102
     questProgress: 1
     talkIndex: 0
     talkNpcId: 1
-    talk: "3\uB9C8\uB9AC\uB97C \uC804\uBD80 \uC7A1\uC544\uC654\uAD70"
-  - questId: 102
+    talk: "\uAE30\uC5B5\uC744 \uC783\uC5C8\uB2E4\uACE0?"
+  - questId: 101
     questProgress: 1
     talkIndex: 1
     talkNpcId: 1
-    talk: "\uBCF4\uC0C1\uC744 \uC8FC\uACA0\uB124"
+    talk: "\uC774\uAC78 \uC5B4\uCA50\uB2F4..."
+  - questId: 101
+    questProgress: 1
+    talkIndex: 2
+    talkNpcId: 1
+    talk: "\uB098\uB3C4 \uC774\uB7F0\uAC74 \uCC98\uC74C\uC774\uB77C \uB2F9\uD669\uC2A4\uB7FD\uAC70\uB4E0?\n\uC7A0\uAE50\uB9CC
+      \uAE30\uB2E4\uB824\uC904\uB798?"
+  - questId: 101
+    questProgress: 2
+    talkIndex: 0
+    talkNpcId: 1
+    talk: "\uAE30\uC5B5\uC744 \uC783\uC740\uAC74 \uB0B4\uAC00 \uB3C4\uC640\uC904
+      \uC218\uB294 \uC5C6\uC9C0\uB9CC, \uC774 \uC8FC\uBCC0\uC5D0 \uB300\uD574\uC11C\uB294
+      \uC54C\uB824\uC904 \uC218 \uC788\uC9C0."
+  - questId: 101
+    questProgress: 2
+    talkIndex: 1
+    talkNpcId: 1
+    talk: "\uC544\uBB34\uD2BC \uB9CC\uB098\uC11C \uBC18\uAC11\uB2E4."
+  - questId: 102
+    questProgress: 0
+    talkIndex: 0
+    talkNpcId: 1
+    talk: "\uC774 \uC55E\uC5D0 \uB9C8\uC744\uC774 \uC788\uC5B4."
+  - questId: 102
+    questProgress: 0
+    talkIndex: 1
+    talkNpcId: 1
+    talk: "\uC7A0\uAE50 \uC6B0\uB9AC \uB9C8\uC744\uC5D0\uC11C \uBA38\uBB34\uB294
+      \uAC74 \uC5B4\uB54C?"
+  - questId: 102
+    questProgress: 0
+    talkIndex: 2
+    talkNpcId: 1
+    talk: "\uADF8\uB7F0\uB370, \uB9C8\uC744 \uACF5\uD130\uC5D0 \uBC15\uC950\uB4E4\uC774
+      \uB098\uD0C0\uB098\uACE0 \uC788\uAC70\uB4E0. \uAC19\uC774 \uBC15\uC950 \uC880
+      \uC7A1\uC544\uC8FC\uB77C."

@@ -1,27 +1,28 @@
 using Cysharp.Threading.Tasks;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SoundManager : SingletonBehaviour<SoundManager>
+public class SoundManager : DontDestroySingletonBehaviour<SoundManager>
 {
     [Header("Data")]
     [SerializeField] SettingDataSO settingDataSO;
-
-    [Header("UI")]
-    [SerializeField] Slider masterBGMVolumeSlider;
-    [SerializeField] Slider masterSFXVolumeSlider;
 
     [Header("SoundPlayer")]
     [SerializeField] SoundPlayer mainBGMPlayer;
     [SerializeField] SoundPlayer subBGMPlayer;
     [SerializeField] SoundPlayer[] longSFXPlayer;
     [SerializeField] SoundPlayer[] shortSFXPlayer;
+
+    public event Action<float> onBgmVolumeChanged;
+    public event Action<float> onSfxVolumeChanged;
+
     int shortIndex;
     int longIndex;
 
-    float masterBGMVolume = 1f;
-    float masterSFXVolume = 1f;
+    public float masterBGMVolume { get; private set; } = 1f;
+    public float masterSFXVolume { get; private set; } = 1f;
     float fadeTime = 1f;
     int currentFadeId = 0; // 페이드인,아웃 식별코드
 
@@ -39,11 +40,6 @@ public class SoundManager : SingletonBehaviour<SoundManager>
         {
             ShortSfxPlay();           
         }
-    }
-    void SetUIEvents()
-    {
-        masterBGMVolumeSlider.onValueChanged.AddListener(SetMasterBGMVolume);
-        masterSFXVolumeSlider.onValueChanged.AddListener(SetMasterSFXVolume);
     }
     void ShortSfxPlay()
     {
@@ -160,19 +156,17 @@ public class SoundManager : SingletonBehaviour<SoundManager>
         mainBGMPlayer.SetVolume(masterBGMVolume);
         subBGMPlayer.SetVolume(masterBGMVolume);
         settingDataSO.bgmVolume = masterBGMVolume;
+        onBgmVolumeChanged?.Invoke(_value);
     }
     public void SetMasterSFXVolume(float _value)
     {
         masterSFXVolume = _value;
         settingDataSO.sfxVolume = masterSFXVolume;
+        onSfxVolumeChanged?.Invoke(_value);
     }
     public void LoadSetting(SettingDataSO _settingData)
     {
         masterBGMVolume = _settingData.bgmVolume;
         masterSFXVolume = _settingData.sfxVolume;
-        masterBGMVolumeSlider.value = masterBGMVolume;
-        masterSFXVolumeSlider.value = masterSFXVolume;
-
-        SetUIEvents();
     }
 }

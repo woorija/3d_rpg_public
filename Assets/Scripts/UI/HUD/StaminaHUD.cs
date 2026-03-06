@@ -9,6 +9,13 @@ public class StaminaHUD : MonoBehaviour
     [SerializeField] PlayerStatus playerStatus;
     float fadeDuration = 0.2f;
 
+    private void Awake()
+    {
+        playerStatus.onStaminaChanged += ChangeStatusStamina;
+        playerStatus.onMaxStaminaChanged += ChangeStatusMaxStamina;
+        playerStatus.onStaminaMaxed += FadeOut;
+        playerStatus.onStaminaNotMaxed += FadeIn;
+    }
     public void FadeIn()
     {
         canvasGroup.DOKill();

@@ -9,7 +9,7 @@ public class BT_TrackingMovement : BT_ActionNode
     public override BTResult Execute()
     {
         blackBoard.agent.speed = blackBoard.blackBoardData.trackingMoveSpeed;
-        blackBoard.agent.SetDestination(blackBoard.player.transform.position);
+        blackBoard.agent.SetDestination(blackBoard.player.centerPos.position);
 
         return BTResult.Success;
     }

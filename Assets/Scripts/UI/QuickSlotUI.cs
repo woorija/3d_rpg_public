@@ -57,10 +57,10 @@ public class QuickSlotUI : MonoBehaviour, IPointerClickHandler
         switch (_type)
         {
             case UseType.Item:
-                AddressableManager.Instance.LoadAsset<Sprite>($"ItemIcon/I{_id}.png", SetIconSprite);
+                AddressableManager.Instance.LoadAsset<Sprite>($"I{_id}", SetIconSprite);
                 break;
             case UseType.Skill:
-                AddressableManager.Instance.LoadAsset<Sprite>($"SkillIcon/S{_id}.png", SetIconSprite);
+                AddressableManager.Instance.LoadAsset<Sprite>($"S{_id}", SetIconSprite);
                 break;
 
         }

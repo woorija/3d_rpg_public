@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,6 +6,16 @@ public class PlayerHUD : MonoBehaviour
     [SerializeField] PlayerStatus playerStatus;
     [SerializeField] Slider HpSlider, MpSlider, ExpSlider;
     [SerializeField] ExpHUD expHUD;
+    private void Awake()
+    {
+        playerStatus.onHpChanged += ChangeStatusHp;
+        playerStatus.onMpChanged += ChangeStatusMp;
+        playerStatus.onExpChanged += ChangeStatusExp;
+
+        playerStatus.onMaxHpChanged += ChangeStatusMaxHp;
+        playerStatus.onMaxMpChanged += ChangeStatusMaxMp;
+        playerStatus.onMaxExpChanged += ChangeStatusMaxExp;
+    }
     public void ChangeStatusMaxHp()
     {
         HpSlider.maxValue = playerStatus.finalStats[StatusType.Hp];
