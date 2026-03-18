@@ -1,12 +1,12 @@
 # 3D RPG
 ## 프로젝트 소개
-![02_title](https://github.com/user-attachments/assets/1358bee2-6d23-41f9-81cc-251fb03b0162)
+![02_title](https://github.com/user-attachments/assets/d3a21df7-151a-49fa-a6e9-e29545eb73b7)
 
  - 작품명 : **3d rpg (가제)**
  - 장르 : **3d rpg**
  - 플랫폼 : `Windows`
- - 개발 기간 : `2023.07.01~진행중`
- - 개발 환경 : `Unity 6000.2.01f1 (urp)`
+ - 개발 기간 : `2023.07.01~2026.03.04`
+ - 개발 환경 : `Unity 6000.3.09f1 (urp)`
  - 개발 언어 : `C#`
  - 개발 팀원
     - **1인 개발**
@@ -16,6 +16,7 @@
  1. 어드레서블을 사용하여 원격 다운로드 시스템 구현
     - 어드레서블 매니저를 구현하여 중복된 값을 가지는 핸들이 생성되는 것을 방지
     - 원하는 시점에 필요한 에셋만 비동기 로딩으로 불러오는 기능 구현
+    - 초기 앱 용량 및 메모리 사용량 절감
  2. 몬스터 ai로 행동트리 구현
     - 블랙보드에 SO를 사용하여 중복 데이터를 최소화
     - 별도의 러닝노드 변수 사용 및 노드 가중치를 부여하고 캔슬 이벤트를 만들어 불필요한 연산 최소화
@@ -36,7 +37,7 @@
 
 ## 프로젝트 설치 방법
 1. [Unity Hub](https://unity.com/kr/download)를 설치한다.
-2. `Unity 6000.2.01f1`버전의 에디터를 설치한다.
+2. `Unity 6000.3.09f1`버전의 에디터를 설치한다.
 3. 저장소를 클론한다.
    ```bash
    git clone https://github.com/woorija/3d_rpg_public.git
@@ -56,15 +57,15 @@
  - 키 설정에서 각 단축키를 확인할 수 있습니다.
 
 ## 스크린샷
-<img width="480" height="270" alt="Image" src="https://github.com/user-attachments/assets/1358bee2-6d23-41f9-81cc-251fb03b0162" />
-<img width="480" height="270" alt="Image" src="https://github.com/user-attachments/assets/86ee34aa-90e4-459f-881a-d8f178d50819" />
-<img width="480" height="270" alt="Image" src="https://github.com/user-attachments/assets/3b85af3c-36f4-42e1-bd95-92d03e97fea9" />
-<img width="480" height="270" alt="Image" src="https://github.com/user-attachments/assets/e91e15e3-2c28-4674-bf9d-e6cf0ff49684" />
-<img width="480" height="270" alt="Image" src="https://github.com/user-attachments/assets/9541120a-a1b6-461c-ac66-2ae9aeee820d" />
-<img width="480" height="270" alt="Image" src="https://github.com/user-attachments/assets/df6f4909-b625-4956-8ee9-3da2e8fb4e5f" />
+<img width="480" height="270" alt="Image" src="https://github.com/user-attachments/assets/d97ce95f-4fe3-4441-8ae2-fad47739fcd4" />
+<img width="480" height="270" alt="Image" src="https://github.com/user-attachments/assets/07bdb526-42b4-4883-8199-46bdf8f9e027" />
+<img width="480" height="270" alt="Image" src="https://github.com/user-attachments/assets/b7150bbd-7d4e-4d1a-b745-5a9dfcc5451b" />
+<img width="480" height="270" alt="Image" src="https://github.com/user-attachments/assets/d261cc26-48b8-4355-889e-39ce66861cc9" />
+<img width="480" height="270" alt="Image" src="https://github.com/user-attachments/assets/d3a21df7-151a-49fa-a6e9-e29545eb73b7" />
+<img width="480" height="270" alt="Image" src="https://github.com/user-attachments/assets/7b42043c-0614-424c-b5a2-944726d6bdfb" />
 
 ## 플레이 영상
-[![02_title](https://github.com/user-attachments/assets/1358bee2-6d23-41f9-81cc-251fb03b0162)](https://youtu.be/2AEsu8yUs8M)
+[![02_title](https://github.com/user-attachments/assets/d3a21df7-151a-49fa-a6e9-e29545eb73b7)](https://youtu.be/2AEsu8yUs8M)
 
 ## 라이센스
 ```
